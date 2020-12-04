@@ -1,4 +1,4 @@
-baseURL = "https://afewell.github.io/ninja-docsy-template/"
+baseURL = "https://github.com/ModernAppsNinja/vSphereTanzu101_VT7933.git/"
 title = "vSphere with Tanzu 101"
 publishDir = "docs"
 
