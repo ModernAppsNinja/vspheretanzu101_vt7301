@@ -108,6 +108,8 @@ url_latest_version = "https://modernappsninja.github.io/vSphereTanzu101_VT7933/"
 github_repo = "https://github.com/ModernAppsNinja/vSphereTanzu101_VT7933"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
 github_project_repo = "https://github.com/ModernAppsNinja/modernappsninja.github.io"
+# The branch that will be referenced in the edit this page and create child page links
+github_branch = "main"
 
 # Specify a value here if your content directory is not in your repo's root directory
 # github_subdir = ""
