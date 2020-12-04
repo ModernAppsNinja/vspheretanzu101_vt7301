@@ -1,8 +1,7 @@
 ---
-title: "Pre Requisites"
+title: "Prerequisites"
 date: 2020-10-09T03:05:56-07:00
 weight: 1020
-
 ---
 
 We recommend taking the [Introduction to VMware Tanzu
