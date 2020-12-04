@@ -1,0 +1,159 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vSphere with Tanzu 101 – Tanzu Kubernetes Grid Overview</title>
+    <link>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/</link>
+    <description>Recent content in Tanzu Kubernetes Grid Overview on vSphere with Tanzu 101</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Fri, 09 Oct 2020 03:23:55 -0700</lastBuildDate>
+    
+	  <atom:link href="https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+        
+      
+    
+    
+    <item>
+      <title>Docs: Kubernetes Refresher</title>
+      <link>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/kubernetesrefresher/</link>
+      <pubDate>Mon, 12 Oct 2020 18:34:25 -0700</pubDate>
+      
+      <guid>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/kubernetesrefresher/</guid>
+      <description>
+        
+        
+        
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/vFk0KHiodGY&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Requirements For Operating Kubernetes</title>
+      <link>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/requirementsforoperatingk8s/</link>
+      <pubDate>Mon, 12 Oct 2020 18:35:13 -0700</pubDate>
+      
+      <guid>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/requirementsforoperatingk8s/</guid>
+      <description>
+        
+        
+        &lt;iframe src=&#34;https://docs.google.com/presentation/d/e/2PACX-1vSR5CRW9hELy_nLRTPRrtUEARcMJJKJjlon2h5Me6sa-2beGCTc7lQuenU7quSeKw/embed?start=false&amp;amp;loop=false&amp;amp;delayms=60000&#34; allowfullscreen=&#34;true&#34; mozallowfullscreen=&#34;true&#34; webkitallowfullscreen=&#34;true&#34; width=&#34;1280&#34; height=&#34;749&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: What Is Tanzu Kubernetes Grid?</title>
+      <link>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/whatistkg/</link>
+      <pubDate>Mon, 12 Oct 2020 18:39:19 -0700</pubDate>
+      
+      <guid>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/whatistkg/</guid>
+      <description>
+        
+        
+        
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/C78MvnFMPTA&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: TKG Key Capabilities</title>
+      <link>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/tkgkeycapabilities/</link>
+      <pubDate>Mon, 12 Oct 2020 18:40:02 -0700</pubDate>
+      
+      <guid>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/tkgkeycapabilities/</guid>
+      <description>
+        
+        
+        &lt;div class=&#34;center mb-md&#34; style=&#34;text-align: center; margin: 0px auto; max-width: 100%; color: #28333c; font-family: Metropolis, Helvetica, Arial, sans-serif; font-size: 17px;&#34;&gt;
+    &lt;h2 class=&#34;bold antialiased mb-xs&#34; style=&#34;font-weight: inherit; font-size: 36px; -webkit-font-smoothing: antialiased; line-height: 1.2em; margin: 0px 0px 20px !important 0px;&#34;&gt;Tanzu Kubernetes Grid Key Capabilities&lt;/h2&gt;
+    &lt;p style=&#34;font-size: 17px; color: #61717d; max-width: 100%; margin: 20px auto;&#34;&gt;Reliably deploy and run containerized workloads across private and public clouds.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;flex&#34; style=&#34;display: flex; justify-content: space-between; flex-wrap: wrap; color: #28333c; font-family: Metropolis, Helvetica, Arial, sans-serif; font-size: 17px;&#34;&gt;
+    &lt;div class=&#34;item mb-md&#34; style=&#34;margin-bottom: 60px !important; width: 513.438px;&#34;&gt;&lt;img src=&#34;https://d1fto35gcfffzn.cloudfront.net/images/products/kubernetes-grid/icon-deploy.svg&#34; style=&#34;height: 50px; vertical-align: middle; border: 0px; margin-bottom: 8px;&#34; /&gt;
+    &lt;h3 class=&#34;h3&#34; style=&#34;font-weight: inherit; font-size: 26px; margin: 0px; line-height: 1.3em; color: #28333c;&#34;&gt;Consistent Kubernetes everywhere&lt;/h3&gt;
+    &lt;p style=&#34;font-size: 17px; color: #61717d; margin: 4px 0px 0px;&#34;&gt;Use your existing data center tools and workflows to give developers secure, self-serve access to conformant Kubernetes clusters in your VMware private cloud, and extend the same consistent Kubernetes runtime across your public cloud and edge environments.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;item mb-md&#34; style=&#34;margin-bottom: 60px !important; width: 513.438px;&#34;&gt;&lt;img src=&#34;https://d1fto35gcfffzn.cloudfront.net/images/products/kubernetes-grid/icon-multi-cluster.svg&#34; style=&#34;height: 50px; vertical-align: middle; border: 0px; margin-bottom: 8px;&#34; /&gt;
+    &lt;h3 class=&#34;h3&#34; style=&#34;font-weight: inherit; font-size: 26px; margin: 0px; line-height: 1.3em; color: #28333c;&#34;&gt;Automated multicluster operations&lt;/h3&gt;
+    &lt;p style=&#34;font-size: 17px; color: #61717d; margin: 4px 0px 0px;&#34;&gt;Simplify operations of large-scale, multicluster Kubernetes environments, and keep your workloads properly isolated. Automate lifecycle management to reduce your risk and shift your focus to more strategic work.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;item mb-md&#34; style=&#34;margin-bottom: 60px !important; width: 513.438px;&#34;&gt;&lt;img src=&#34;https://d1fto35gcfffzn.cloudfront.net/images/products/kubernetes-grid/icon-integrated.svg&#34; style=&#34;height: 50px; vertical-align: middle; border: 0px; margin-bottom: 8px;&#34; /&gt;
+    &lt;h3 class=&#34;h3&#34; style=&#34;font-weight: inherit; font-size: 26px; margin: 0px; line-height: 1.3em; color: #28333c;&#34;&gt;Validated integrated services&lt;/h3&gt;
+    &lt;p style=&#34;font-size: 17px; color: #61717d; margin: 4px 0px 0px;&#34;&gt;Streamline the deployment and management of local and in-cluster platform services&amp;mdash;like logging, monitoring, networking, and storage services&amp;mdash;to more easily configure and maintain a production-ready Kubernetes environment.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;item mb-md&#34; style=&#34;margin-bottom: 60px !important; width: 513.438px;&#34;&gt;&lt;img src=&#34;https://d1fto35gcfffzn.cloudfront.net/images/products/kubernetes-grid/icon-cloud-ready.svg&#34; style=&#34;height: 50px; vertical-align: middle; border: 0px; margin-bottom: 8px;&#34; /&gt;
+    &lt;h3 class=&#34;h3&#34; style=&#34;font-weight: inherit; font-size: 26px; margin: 0px; line-height: 1.3em; color: #28333c;&#34;&gt;Enterprise-wide management&lt;/h3&gt;
+    &lt;p style=&#34;font-size: 17px; color: #61717d; margin: 4px 0px 0px;&#34;&gt;As you scale your Kubernetes footprint, keep your operational burden low through a tight integration with&amp;nbsp;&lt;a href=&#34;https://tanzu.vmware.com/mission-control&#34; name=&#34;&amp;amp;lpos=apps_scodevmw : 106&#34; style=&#34;color: #1d428a; text-decoration-line: none; transition: all 0.2s ease 0s; cursor: pointer; -webkit-font-smoothing: antialiased;&#34;&gt;VMware Tanzu Mission Control&lt;/a&gt;. Get global visibility across teams, clusters and workloads. Automate multiregion configuration and policy management.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;item mb-md&#34; style=&#34;margin-bottom: 60px !important; width: 513.438px;&#34;&gt;&lt;img src=&#34;https://d1fto35gcfffzn.cloudfront.net/images/products/kubernetes-grid/icon-kubernetes.svg&#34; style=&#34;height: 50px; vertical-align: middle; border: 0px; margin-bottom: 8px;&#34; /&gt;
+    &lt;h3 class=&#34;h3&#34; style=&#34;font-weight: inherit; font-size: 26px; margin: 0px; line-height: 1.3em; color: #28333c;&#34;&gt;Kubernetes on vSphere&lt;/h3&gt;
+    &lt;p style=&#34;font-size: 17px; color: #61717d; margin: 4px 0px 0px;&#34;&gt;Extend your enterprise-ready Kubernetes operating model across data centers and clouds through a tight integration with&amp;nbsp;&lt;a href=&#34;https://www.vmware.com/products/vsphere.html&#34; target=&#34;_blank&#34; style=&#34;color: #1d428a; text-decoration-line: none; transition: all 0.2s ease 0s; cursor: pointer; -webkit-font-smoothing: antialiased;&#34;&gt;vSphere 7 with Kubernetes&lt;/a&gt;&amp;mdash;available as part of the VMware Cloud Foundation 4 stack.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class=&#34;item mb-md&#34; style=&#34;margin-bottom: 60px !important; width: 513.438px;&#34;&gt;&lt;img src=&#34;https://d1fto35gcfffzn.cloudfront.net/images/products/kubernetes-grid/icon-open-source.svg&#34; style=&#34;height: 50px; vertical-align: middle; border: 0px; margin-bottom: 8px;&#34; /&gt;
+    &lt;h3 class=&#34;h3&#34; style=&#34;font-weight: inherit; font-size: 26px; margin: 0px; line-height: 1.3em; color: #28333c;&#34;&gt;Expert support&lt;/h3&gt;
+    &lt;p style=&#34;font-size: 17px; color: #61717d; margin: 4px 0px 0px;&#34;&gt;Get 24x7 production support from VMware Global Support Services. Access guidance from the Kubernetes community and the broader cloud native ecosystem.&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p&gt;&lt;/p&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: Operating Kubernetes with TKG</title>
+      <link>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/operatingk8swithtkg/</link>
+      <pubDate>Mon, 12 Oct 2020 18:40:26 -0700</pubDate>
+      
+      <guid>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/operatingk8swithtkg/</guid>
+      <description>
+        
+        
+        &lt;iframe src=&#34;https://docs.google.com/presentation/d/e/2PACX-1vSA_YPrb0Mj8rHNpoqMJ10m8GuQlGqrp9hC2rW8cLXqANDwQLISQkOmCAIQ8Aq56g/embed?start=false&amp;amp;loop=false&amp;amp;delayms=60000&#34; allowfullscreen=&#34;true&#34; mozallowfullscreen=&#34;true&#34; webkitallowfullscreen=&#34;true&#34; width=&#34;1280&#34; height=&#34;749&#34; frameborder=&#34;0&#34;&gt;&lt;/iframe&gt;
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: TKG Features and Benefits</title>
+      <link>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/tkgfeaturesandbenefits/</link>
+      <pubDate>Mon, 12 Oct 2020 18:40:54 -0700</pubDate>
+      
+      <guid>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/tkgfeaturesandbenefits/</guid>
+      <description>
+        
+        
+        
+&lt;div style=&#34;position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;&#34;&gt;
+  &lt;iframe src=&#34;https://www.youtube.com/embed/FMWL3d7NY8g&#34; style=&#34;position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;&#34; allowfullscreen title=&#34;YouTube Video&#34;&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+
+      </description>
+    </item>
+    
+    <item>
+      <title>Docs: TKG Overview Section Summary</title>
+      <link>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/sectionsummary/</link>
+      <pubDate>Mon, 12 Oct 2020 18:40:26 -0700</pubDate>
+      
+      <guid>https://afewell.github.io/ninja-docsy-template/docs/introtovspherewithtanzu/tanzukubernetesgridoverview/sectionsummary/</guid>
+      <description>
+        
+        
+        &lt;p&gt;You have reached the end of this section.&lt;/p&gt;
+&lt;h4 id=&#34;please-click-here-to-proceed-with-the-introduction-sectionvsphere7withtanzuoverview&#34;&gt;&lt;a href=&#34;../vsphere7withtanzuoverview/&#34;&gt;Please Click Here to Proceed with the Introduction Section&lt;/a&gt;&lt;/h4&gt;
+
+      </description>
+    </item>
+    
+  </channel>
+</rss>
