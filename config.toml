@@ -1,6 +1,5 @@
 baseURL = "https://modernappsninja.github.io/vSphereTanzu101_VT7933/"
 title = "vSphere with Tanzu 101"
-publishDir = "docs"
 
 enableRobotsTXT = true
 
