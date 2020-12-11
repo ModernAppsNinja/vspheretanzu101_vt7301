@@ -4,8 +4,6 @@ date: 2020-10-09T03:05:22-07:00
 weight: 1010
 
 ---
-Hi Everybody
-
 This course provides a technical introduction to vSphere with Tanzu.
 
 If you complete all steps in this course, you can request a certificate
