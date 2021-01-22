@@ -15,10 +15,13 @@ jobs:
           env
           cat /home/runner/work/_temp/_github_workflow/event.json
       - name: check contexts
+        env:
+          my_actor: ${{ env.GITHUB_ACTOR }}
+          my_repo: ${{ env.GITHUB_REPOSITORY }}
         run: |
           echo ${{ secrets.NINJABOTGURU }}
-          echo ${{ env.GITHUB_ACTOR }}
-          echo ${{ env.GITHUB_REPOSITORY }}
+          echo $my_actor
+          echo $my_repo
       # - name: curl member record file
       #   run: |
       #     curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
