@@ -1,9 +1,9 @@
 name: course_registration
 on:
-  issues:
+  pull_request:
     types: [opened]
-    # paths:
-    # - 'static/userdata/registered_members/**.json'
+    paths:
+    - 'static/userdata/registered_members/**.json'
 
 jobs:
   job_course_registration:
