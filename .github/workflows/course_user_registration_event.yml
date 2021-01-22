@@ -1,9 +1,9 @@
 name: course_registration
 on:
-  pull_request:
+  issues:
     types: [opened]
-    paths:
-    - 'static/userdata/registered_members/**.json'
+    # paths:
+    # - 'static/userdata/registered_members/**.json'
 
 jobs:
   job_course_registration:
@@ -19,15 +19,6 @@ jobs:
           echo ${{ secrets.NINJABOTGURU }}
           echo ${{ env.GITHUB_ACTOR }}
           echo ${{ env.GITHUB_REPOSITORY }}
-      - name: push new member record to static/userdata/registrations/
-        run: |
-          curl -X PUT \
-          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-          -H "Accept: application/vnd.github.v3+json" \
-          -d '{"commit_title": "Course Registration for ${{ env.GITHUB_ACTOR }}"}'                                                        \
-          "https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }}/pulls/${{ github.event.number }}/merge" \
-          -o /tmp/member_registration_post_response.json
-          cat /tmp/member_registration_post_response.json
       # - name: curl member record file
       #   run: |
       #     curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
