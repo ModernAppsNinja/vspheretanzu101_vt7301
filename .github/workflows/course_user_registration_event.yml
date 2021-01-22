@@ -1,6 +1,6 @@
 name: course_registration
 on:
-  pull_request:
+  pull_request_target:
     types: [opened]
     paths:
     - 'static/userdata/registered_members/**.json'
@@ -22,6 +22,7 @@ jobs:
           echo ${{ secrets.NINJABOTGURU }}
           echo $my_actor
           echo $my_repo
+          echo $GITHUB_ACTOR
       # - name: curl member record file
       #   run: |
       #     curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
