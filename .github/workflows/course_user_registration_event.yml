@@ -19,8 +19,8 @@ jobs:
           curl -X PUT \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"commit_title": "Course Registration for $GITHUB_ACTOR"}'                                                        \
-          "https://api.github.com/repos/$GITHUB_REPOSITORY/pulls/${{ github.event.number }}/merge" \
+          -d '{"commit_title": "Course Registration for ${{ env.GITHUB_ACTOR }}"}'                                                        \
+          "https://api.github.com/repos/${{ env.GITHUB_REPOSITORY }}/pulls/${{ github.event.number }}/merge" \
           -o /tmp/member_registration_post_response.json
           cat /tmp/member_registration_post_response.json
       # - name: curl member record file
