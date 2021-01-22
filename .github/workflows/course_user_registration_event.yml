@@ -14,6 +14,11 @@ jobs:
         run: |
           env
           cat /home/runner/work/_temp/_github_workflow/event.json
+      - name: check contexts
+        run: |
+          echo ${{ secrets.NINJABOTGURU }}
+          echo ${{ env.GITHUB_ACTOR }}
+          echo ${{ env.GITHUB_REPOSITORY }}
       - name: push new member record to static/userdata/registrations/
         run: |
           curl -X PUT \
