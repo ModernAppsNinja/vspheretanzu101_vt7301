@@ -14,15 +14,28 @@ jobs:
         run: |
           env
           cat /home/runner/work/_temp/_github_workflow/event.json
+      - name: set member login as member_login
+        run: |
+          echo $(echo member_login="$GITHUB_ACTOR") >> $GITHUB_ENV
+          echo $member_login
+      - name: set org/repo as org_repo
+        run: |
+          echo $(echo org_repo="$GITHUB_REPOSITORY") >> $GITHUB_ENV
+          echo $org_repo
       - name: check contexts
-        env:
-          my_actor: ${{ env.GITHUB_ACTOR }}
-          my_repo: ${{ env.GITHUB_REPOSITORY }}
         run: |
           echo ${{ secrets.NINJABOTGURU }}
-          echo $my_actor
-          echo $my_repo
-          echo $GITHUB_ACTOR
+          echo ${{ env.member_login }}
+          echo ${{ env.org_repo }}
+      - name: push new member record to static/userdata/registrations/
+        run: |
+          curl -X PUT \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"commit_title": "Course Registration for ${{ env.member_login }}"}'                                                        \
+          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/merge" \
+          -o /tmp/member_registration_post_response.json
+          cat /tmp/member_registration_post_response.json
       # - name: curl member record file
       #   run: |
       #     curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
