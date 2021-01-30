@@ -9,6 +9,8 @@ jobs:
   job_verify_membership:
     name: verify_membership
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.ismember.outputs.ismember }}
     steps:
       - name: review event details
         run: |
@@ -31,6 +33,9 @@ jobs:
             echo "the requesting user is not a member"
           fi
           echo $ismember
+      - id: ismember
+        if: env.ismember == 'true'
+        run: echo "::set-output name=ismember::true"
       - name: if not member, post message to pr
         if: env.ismember == 'false'
         run: |
@@ -53,8 +58,9 @@ jobs:
           cat /tmp/close_pr_response.json
   job_course_registration:
     name: course_registration
+    needs: job_verify_membership
     runs-on: ubuntu-latest
-    if: env.ismember == 'true'
+    if: needs.job_verify_membership.outputs.ismember == 'true'
     steps:
       - name: review event details
         run: |
