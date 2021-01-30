@@ -3,31 +3,83 @@ on:
   pull_request_target:
     types: [opened]
     paths:
-    - 'static/userdata/registered_members/**.json'
+    - 'static/admin/userdata/registered_members/**.json'
 
 jobs:
-  job_course_registration:
-    name: course_registration
+  job_verify_membership:
+    name: verify_membership
     runs-on: ubuntu-latest
     steps:
-      - name: set git configuration
+      - name: review event details
         run: |
           env
           cat /home/runner/work/_temp/_github_workflow/event.json
-      - name: set member login as member_login
+      - name: curl member record file
         run: |
-          echo $(echo member_login="$GITHUB_ACTOR") >> $GITHUB_ENV
-          echo $member_login
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://raw.githubusercontent.com/modernapsninja/admin-private/main/userdata/members/${{ github.event.sender.login }}_${{ github.event.sender.id }}.json" \
+          -o /tmp/raw_member_record_curl.json
+      - name: check if member record exists
+        run: |
+          cat /tmp/raw_member_record_curl.json
+          if [ $(wc -l <"/tmp/raw_member_record_curl.json") -ge 2 ]
+          then
+            echo ismember=true >> $GITHUB_ENV
+            echo "the requesting user is a member"
+          else
+            echo ismember=false >> $GITHUB_ENV
+            echo "the requesting user is not a member"
+          fi
+          echo $ismember
+      - name: if not member, post message to pr
+        if: env.ismember == 'false'
+        run: |
+          curl -X PUT \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"event": "COMMENT", "body": "@${{ github.event.sender.login }} You must first register as a member at https://modernapps.ninja before you can register for a course. Please open a new registration request after you have completed the modernapps.ninja member registration. This Pull Request will now be closed, thank you!"}' \
+          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/reviews" \
+          -o /tmp/pr_comment_post_response.json
+          cat /tmp/pr_comment_post_response.json
+      - name: if not member, close pr
+        if: env.ismember == 'false'
+        run: |
+          curl -X PATCH \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"state": "closed"}' \
+          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}" \
+          -o /tmp/close_pr_response.json
+          cat /tmp/close_pr_response.json
+  job_course_registration:
+    name: course_registration
+    runs-on: ubuntu-latest
+    if: env.ismember == 'true'
+    steps:
+      - name: review event details
+        run: |
+          env
+          cat /home/runner/work/_temp/_github_workflow/event.json
       - name: set org/repo as org_repo
         run: |
           echo $(echo org_repo="$GITHUB_REPOSITORY") >> $GITHUB_ENV
           echo $org_repo
-      - name: check contexts
+      - name: curl member record file
         run: |
-          echo ${{ secrets.NINJABOTGURU }}
-          echo ${{ env.member_login }}
-          echo ${{ env.org_repo }}
-      - name: push new member record to static/userdata/registrations/
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://raw.githubusercontent.com/modernapsninja/admin-private/main/userdata/members/${{ github.event.sender.login }}_${{ github.event.sender.id }}.json" \
+          -o /tmp/raw_member_record_curl.json
+      - name: check if member record exists
+        run: |
+          cat /tmp/raw_member_record_curl.json
+          if [ $(wc -l <"/tmp/raw_member_record_curl.json") -ge 2 ]
+          then
+            echo duplicate_request=true >> $GITHUB_ENV
+          else
+            echo duplicate_request=false >> $GITHUB_ENV
+          fi
+          echo $duplicate_request
+      - name: merge pull request
         run: |
           curl -X PUT \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
