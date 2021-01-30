@@ -43,7 +43,7 @@ jobs:
       - name: if not member, post message to pr
         if: env.ismember == 'false'
         run: |
-          curl -X PUT \
+          curl -X POST \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
           -d '{"event": "COMMENT", "body": "@${{ github.event.sender.login }} You must first register as a member at https://modernapps.ninja before you can register for a course. Please open a new registration request after you have completed the modernapps.ninja member registration. This Pull Request will now be closed, thank you!"}' \
