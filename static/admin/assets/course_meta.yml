@@ -1,0 +1,30 @@
+---
+## This Document Provides the Front Matter and Metadata for the Course Information page used in the modernapps.ninja homepage and the member profile page.
+### Hugo Template Metadata
+title: "vSphere with Tanzu 101"
+date: 2020-11-23T15:27:17+06:00
+draft: false
+# page title background image - do not change this value
+bg_image: "https://modernpps.ninja/images/backgrounds/page-title.jpg"
+# meta description
+description: "This Course provides a technical introduction to vSphere with Tanzu"
+# course thumbnail
+image: "https://modernapps.ninja/images/courses/vspheretanzu101.jpg"
+# taxonomy
+categories: ["vSphere with Tanzu"]
+tags: ["vSphere with Tanzu", "Tanzu Portfolio"]
+# teacher
+teacher: "Ninja Admins"
+# duration
+duration: "~3 Hours"
+# course fee
+fee: "Free!"
+# apply url
+apply_url: "https://lms.modernapps.ninja/courses/course-v1:modernapps+COU-VT7933+Perpetual/about"
+# type
+type: "course"
+### Extended Ninja Course Metadata
+content_id:
+short_title:
+course_repo_name:
+---
