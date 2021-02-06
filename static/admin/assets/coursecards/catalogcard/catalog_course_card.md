@@ -1,34 +1,6 @@
----
-title: "vSphere with Tanzu 101"
-date: 2020-11-23T15:27:17+06:00
-draft: false
-# page title background image
-bg_image: "images/backgrounds/page-title.jpg"
-# meta description
-description : "This Course provides a technical introduction to vSphere with Tanzu"
-# course thumbnail
-image: "images/courses/vspheretanzu101.jpg"
-# taxonomy
-categories: ["vSphere with Tanzu"]
-tags: ["vSphere with Tanzu", "Tanzu Portfolio"]
-# teacher
-teacher: "Ninja Admins"
-# duration
-duration : "~3 Hours"
-# weekly
-# weekly : "03 hours"
-# course fee
-fee : "Free!"
-# apply url
-apply_url : "https://lms.modernapps.ninja/courses/course-v1:modernapps+COU-VT7933+Perpetual/about"
-# type
-type: "course"
----
-
-
 ### About Course
 
-vSphere with Tanzu: application-focused management for streamlined development, agile operations, and accelerated innovation. Applications can be deployed using any combination of virtual machines, containers and Kubernetes.</p>
+vSphere with Tanzu: application-focused management for streamlined development, agile operations, and accelerated innovation. Applications can be deployed using any combination of virtual machines, containers and Kubernetes.
 
 ### Requirements
 

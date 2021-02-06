@@ -5,8 +5,6 @@ weight: 1005
 
 ---
 
-![https://raw.githubusercontent.com/g1eny0ung/hugo-theme-dream/master/images/screenshot.png](https://raw.githubusercontent.com/g1eny0ung/hugo-theme-dream/master/images/screenshot.png)
-
 **Please Note: This course is currently in technical preview** for
 additional review and feedback before the course is generally available.
 The purpose of the preview is to validate all information in the course

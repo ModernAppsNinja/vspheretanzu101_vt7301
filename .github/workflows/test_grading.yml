@@ -1,13 +1,13 @@
-name: course_registration
+name: test_grading
 on:
   pull_request_target:
     types: [opened]
     paths:
-    - 'static/admin/userdata/registered_members/**.json'
+    - 'static/admin/userdata/tests/**.yml'
 
 jobs:
-  job_verify_membership:
-    name: verify_membership
+  job_test_grading:
+    name: test_grading
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.ismember.outputs.ismember }}
@@ -16,7 +16,7 @@ jobs:
         run: |
           env
           cat /home/runner/work/_temp/_github_workflow/event.json
-      - name: set source repo as org_repo
+      - name: set org/repo as org_repo
         run: |
           echo $(echo org_repo="$GITHUB_REPOSITORY") >> $GITHUB_ENV
           echo $org_repo

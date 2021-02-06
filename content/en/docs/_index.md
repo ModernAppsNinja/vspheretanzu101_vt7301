@@ -8,9 +8,7 @@ menu:
     weight: 20
 ---
 
-## Welcome to the vSphere with Tanzu 101 Course!
-
-## [Click Here to Proceed to the Course Introduction Section](courseintroduction/)
+### Welcome to the vSphere with Tanzu 101 Course!
 
 
 <!-- This commented section contains old text from the original template kept here as a reference
