@@ -9,7 +9,7 @@ description: "$course_description"
 # course thumbnail
 image: "https://modernapps.ninja/images/courses/$course_short_title.jpg"
 # taxonomy
-tags: [$course_tags]
+tags: ["Tanzu Portfiolio"]
 # teacher
 teacher: "Ninja Admins"
 # duration
