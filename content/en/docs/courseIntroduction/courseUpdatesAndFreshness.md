@@ -1,6 +1,6 @@
 ---
 title: "Course Updates and Freshness"
-date: 2020-10-09T03:06:21-07:00
+date: 2020-10-12T18:34:25-07:00
 weight: 1025
 
 ---

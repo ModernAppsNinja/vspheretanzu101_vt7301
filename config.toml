@@ -1,5 +1,5 @@
-baseURL = "https://modernappsninja.github.io/vSphereTanzu101_VT7933/"
-title = "vSphere with Tanzu 101"
+baseURL = "https://modernappsninja.github.io/$course_repo_name/"
+title = "$course_title"
 
 enableRobotsTXT = true
 
@@ -53,8 +53,8 @@ id = "UA-162817887-1"
 
 [languages]
 [languages.en]
-title = "vSphere with Tanzu 101"
-description = "vSphere with Tanzu 101 Course"
+title = "$course_title"
+description = "$course_description"
 languageName ="English"
 # Weight used for sorting.
 weight = 1
@@ -101,10 +101,10 @@ archived_version = false
 
 # A link to latest version of the docs. Used in the "version-banner" partial to
 # point people to the main doc site.
-url_latest_version = "https://modernappsninja.github.io/vSphereTanzu101_VT7933/"
+url_latest_version = "https://modernappsninja.github.io/$course_repo_name/"
 
 # Repository configuration (URLs for in-page links to opening issues and suggesting changes)
-github_repo = "https://github.com/ModernAppsNinja/vSphereTanzu101_VT7933"
+github_repo = "https://github.com/ModernAppsNinja/$course_repo_name"
 # An optional link to a related project repo. For example, the sibling repository where your product code lives.
 github_project_repo = "https://github.com/ModernAppsNinja/modernappsninja.github.io"
 # The branch that will be referenced in the edit this page and create child page links
@@ -152,7 +152,7 @@ no = 'Sorry to hear that. Please <a href="https://github.com/ModernAppsNinja/mod
 # If you want this feature, but occasionally need to remove the Reading time from a single page, 
 # add "hide_readingtime: true" to the page's front matter
 [params.ui.readingtime]
-enable = true
+enable = false
 
 [params.links]
 # End user relevant links. These will show up on left side of footer and in the community page if you have one.

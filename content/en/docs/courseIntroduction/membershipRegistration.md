@@ -1,6 +1,6 @@
 ---
 title: "Community Membership and Course Registration"
-date: 2020-10-09T03:05:22-07:00
+date: 2020-10-12T18:34:25-07:00
 weight: 1013
 
 ---
@@ -32,13 +32,13 @@ The following link will direct your browser to a github web-based document edito
 
 Please right click the following link and select the option to open it in a new browser tab, so you can keep this instruction page open in the current tab to guide you through the process. 
 
-[Right Click Here and select the option to open link in new tab to view the course registration form](https://github.com/ModernAppsNinja/vSphereTanzu101_VT7933/new/main/static/admin/userdata/registered_members)
+[Right Click Here and select the option to open link in new tab to view the course registration form](https://github.com/$course_repo_name/new/main/static/admin/userdata/registered_members)
 
 #### Step 2 - Name your file
 
-Note the page displays a message that `You’re making changes in a project you don’t have write access to. Submitting a change will write it to a new branch in your fork YOUR_GITHUB_USERNAME/vSphereTanzu101_VT7933, so you can send a pull request.`
+Note the page displays a message that `You’re making changes in a project you don’t have write access to. Submitting a change will write it to a new branch in your fork YOUR_GITHUB_USERNAME/$course_repo_name, so you can send a pull request.`
 
-The pull request process works by submitting a copy of your new or updated file to the repository, which will only be applied to the course repository if a course administrator approves the request. Because you do not have write access to the repository, github will create a special copy called a `fork` of the course repository within your github account with your new or updated files, and use your copy to submit the update to the official course repository as shown in the following steps.
+The pull request process works by submitting a copy of your new or updated file to the repository, which will only be applied to the course repository if a course administrator approves the request. Because you do not have write access to the repository, github will create a special copy called a `fork` of the course repository within your github account with your new or updated files, and use your copy to save the updates you're submitting to the official course repository as shown in the following steps.
 
 In your browser tab to the new registration document, above the document editor in the file name field, type in the name of the file in the format `your_lowercase_github_username.yml`, replacing the value your_lowercase_github_username with the username for your github account in lowercase letters. 
 
@@ -46,19 +46,31 @@ The following screenshot shows an example of this step using the github username
 
 **Note:** If needed, you can verify your github username by clicking on your github profile menu, which can be found on the upper right hand corner on any github page if you are signed in.
 
-![Screenshot of File Naming](/vSphereTanzu101_VT7933/admin/assets/images/course_registration_file_naming.png)
+![Screenshot of File Naming](/$course_repo_name/admin/assets/images/course_registration_file_naming.png)
 
 #### Step 3 - Add a line to your file
 
 On line 1 in the document editor, type `status: in-progress` as shown in the following screenshot:
 
-![Screenshot of File Editing](/vSphereTanzu101_VT7933/admin/assets/images/course_registration_file_editing.png)
+![Screenshot of File Editing](/$course_repo_name/admin/assets/images/course_registration_file_editing.png)
 
 #### Step 4 - Submit your registration document
 
 Scroll to the bottom of the registration document page and click `Propose New File` as shown in the following image:
 
-![Propose New File Screenshot](/vSphereTanzu101_VT7933/admin/assets/images/propose_new_file.png)
+![Propose New File Screenshot](/$course_repo_name/admin/assets/images/propose_new_file.png)
 
-After you click `Propose New File`, your browser will be redirected to the `Comparing Changes` page with all the configuration all setup so all you sould need to do is click `Create Pull Request` --- but before you click anything, please review the details highlighted in the following screenshot to learn about the pull request process and verify your request is accurate. 
+After you click `Propose New File`, your browser will be redirected to the `Comparing Changes` page with all the configuration all setup so all you sould need to do is click `Create Pull Request` --- but before you click, please review the other details shown on the comparing changes and observe that the file you created and the lines added are shown, so you can easily review and verify your proposed changes before submitting.
 
+After you click `Create pull request`, an automated GitHub Action worklow will initiate that will do the following actions:
+- verify that your github account is a member of the modernappsninja organization
+- verify the filename of the submitted document matches the github username of the logged-in user that submitted the pull request
+- if the above items are successfully validated:
+  - add the course record page to the members profile repository to display course progress and completion records
+  - add a message to the pull request ticket with the URL for the members course record page
+  - trigger github to send an email from github to the email address for the github user account that submitted the pull request including the message from the previous step
+  - approve and merge the new document you submitted into the registered members directory for this course
+
+This completes the course registration process, once you have completed the above steps, you can proceed through the course and participate in any steps such as tests and completion certificates that require course registration. 
+
+Thank you!

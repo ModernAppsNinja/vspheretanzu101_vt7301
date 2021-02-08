@@ -1,6 +1,6 @@
 ---
 title: "Welcome to the Course"
-date: 2020-10-09T03:05:22-07:00
+date: 2020-10-12T18:34:25-07:00
 weight: 1010
 
 ---
