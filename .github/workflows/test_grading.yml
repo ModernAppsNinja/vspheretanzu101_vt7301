@@ -5,9 +5,20 @@ on:
     paths:
     - 'static/admin/userdata/tests/**.yml'
 
+
+# verify course registration
+# abstract pr file body from pr event
+# curl answer key file
+# compare reponse body values with answer key values
+# prepare grading report
+# post grading report to member profile repo
+# if passing grade, update member course record page
+# post message with link to grading report to pr ticket
+# close pr ticket
+
 jobs:
-  job_test_grading:
-    name: test_grading
+  job_verify_membership:
+    name: verify_membership
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.ismember.outputs.ismember }}
@@ -16,7 +27,7 @@ jobs:
         run: |
           env
           cat /home/runner/work/_temp/_github_workflow/event.json
-      - name: set org/repo as org_repo
+      - name: set source org/repo as org_repo
         run: |
           echo $(echo org_repo="$GITHUB_REPOSITORY") >> $GITHUB_ENV
           echo $org_repo
@@ -70,6 +81,9 @@ jobs:
         run: |
           env
           cat /home/runner/work/_temp/_github_workflow/event.json
+      - name: install yq
+        run: |
+          sudo snap install yq
       - name: set org/repo as org_repo
         run: |
           echo $(echo org_repo="$GITHUB_REPOSITORY") >> $GITHUB_ENV
@@ -79,12 +93,99 @@ jobs:
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           "https://raw.githubusercontent.com/modernapsninja/admin-private/main/userdata/members/${{ github.event.sender.login }}_${{ github.event.sender.id }}.json" \
           -o /tmp/raw_member_record_curl.json
-      - name: upload course.md file to member repo 
-      - name: upload image for course.md file to member repo
-      - name: 
-      - name: merge pull request
-      - name: merge pull request
-      - name: merge pull request
+      - name: curl file list for pr
+        run: |
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/files" \
+          -o /tmp/pr_file_list.json
+      - name: set envar pr_filename as filename value
+        run: |
+          cat /tmp/pr_file_list.json | jq -r '.filename' > /tmp/pr_filename
+          echo pr_filename=$(cat /tmp/pr_filename) >> $GITHUB_ENV
+      - name: set raw link to pr file as envar pr_raw_file_url
+        run: |
+          cat /tmp/pr_file_list.json | jq -r '.raw_url' > /tmp/pr_filename
+          echo pr_raw_file_url=$(cat /tmp/pr_filename) >> $GITHUB_ENV
+      - name: curl the pr file
+        run: |
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "${{ env.pr_raw_file_url }}" \
+          -o /tmp/pr_raw_file.yml
+      - name: curl the answer key
+        run: |
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://raw.githubusercontent.com/modernapsninja/admin-private/main/appdata/courses/${{ github.event.base.repo.name }}/key.${{ env.pr_filename }}.raw" \
+          -o /tmp/key.${{ env.pr_filename }}.raw
+      - name: curl the test metadata file
+        run: |
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://raw.githubusercontent.com/modernapsninja/admin-private/main/appdata/courses/${{ github.event.base.repo.name }}/meta.${{ env.pr_filename }}" \
+          -o /tmp/meta.${{ env.pr_filename }}
+      - name: decode answer key file
+        run: |
+          cat /tmp/key.${{ env.pr_filename }}.raw | base64 -d > /tmp/key.${{ env.pr_filename }}
+      - name: diff pr_raw_file.yml against test answer key
+        run: |
+          diff -iwB /tmp/key.${{ env.pr_filename }} /tmp/pr_raw_file.yml > /temp/diff_results_raw
+      - name: clean diff results file
+        run: |
+          awk '/^/' /temp/diff_results_raw | sed -e 's/^< //g' > /tmp/wrong_answers
+      - name: set question count value for total questions and wrong_answer questions
+        run: |
+          echo total_question_count=$(grep -ci /tmp/key.${{ env.pr_filename }}) >> $GITHUB_ENV
+          echo wrong_question_count=$(grep -ci /tmp/wrong_answers) >> $GITHUB_ENV
+      - name: set envar percent_correct as percent correct by comparing line count of diff results to line count of answer key
+        run: |
+          echo percent_correct=$(bc <<< 'scale=2; (1-('${{ env.wrong_question_count }}'/'${{ env.total_question_count}}'))*100') \
+          | sed 's/\..*//g' >> $GITHUB_ENV
+      - name: set envar passing_percent
+        run: echo passing_percent=$(yq e '.passing_percent' /tmp/meta.${{ env.pr_filename }}) >> $GITHUB_ENV
+      - name: set envar passing_grade=true/false
+        run: |
+          if [ ${{ env.percent_correct}} -ge ${{ env.passing_percent }}]
+          then
+            echo "passing_grade_phrase=You Passed the Test!" >> $GITHUB_ENV 
+            echo passing_grade=true >> $GITHUB_ENV
+          else
+            echo "passing_grade_phrase=You Did Not Pass the Test. Please review the incorrect answers below and retake the test when ready" >> $GITHUB_ENV
+            echo passing_grade=false >> $GITHUB_ENV
+          fi
+      - name: prepare grade report
+        run: |
+          echo "Member Grade Report for ${{ github.event.sender.login }} for ${{ env.pr_filename }}" > /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
+          echo "--------" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
+          echo "Test Result: ${{ env.passing_grade_phrase }}" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
+          echo "Minimum Passing Percentage: ${{ env.passing_percent }}%" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
+          echo "Percent of Questions You Answered Correctly: ${{ env.percent_correct }}%" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
+          echo "--------" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
+          echo "The following questions were incorrect in your test submission:" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
+          cat /tmp/wrong_answers >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
+      - name: encode grade report with base64 -w 0
+        run: cat /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }} | base64 -w 0 > /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}.base64
+      - name: post grade report to member repo
+        run: |
+          curl -X PUT \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"message": "Posting Member Grade Report grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}", "content": "'$(cat /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}.base64)'"}' \
+          "https://api.github.com/repos/modernappsninjas/${{ github.event.sender.login }}/contents/static/userdata/courses/${{ github.event.base.repo.name }}/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}" \
+          -o /tmp/member_grade_report_post_response.json
+          cat /tmp/member_grade_report_post_response.json
+      - name: if passing, update member course card
+      - name: if passing, post message to pr
+      - name: if not passing, post message to pr
+      - name: close pr
+
+          
+          
+          
+
+
+
+
+
+
+      - name: CLOSE pull request
         run: |
           curl -X PUT \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
