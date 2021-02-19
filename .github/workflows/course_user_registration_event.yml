@@ -79,11 +79,11 @@ jobs:
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           "https://raw.githubusercontent.com/modernapsninja/admin-private/main/userdata/members/${{ github.event.sender.login }}_${{ github.event.sender.id }}.json" \
           -o /tmp/raw_member_record_curl.json
-      - name: upload course.md file to member repo 
-      - name: upload image for course.md file to member repo
-      - name: 
-      - name: merge pull request
-      - name: merge pull request
+      # - name: upload course.md file to member repo 
+      # - name: upload image for course.md file to member repo
+      # - name: 
+      # - name: merge pull request
+      # - name: merge pull request
       - name: merge pull request
         run: |
           curl -X PUT \
