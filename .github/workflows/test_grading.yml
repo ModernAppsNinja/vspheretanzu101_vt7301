@@ -105,8 +105,8 @@ jobs:
           echo test_name=$(echo ${{ env.pr_filename }} | sed 's/\..*//g') >> $GITHUB_ENV
       - name: set raw link to pr file as envar pr_raw_file_url
         run: |
-          cat /tmp/pr_file_list.json | jq -r '.raw_url' > /tmp/pr_filename
-          echo pr_raw_file_url=$(cat /tmp/pr_filename) >> $GITHUB_ENV
+          cat /tmp/pr_file_list.json | jq -r '.raw_url' > /tmp/pr_raw_file_url
+          echo pr_raw_file_url=$(cat /tmp/pr_raw_file_url) >> $GITHUB_ENV
       - name: curl the pr file
         run: |
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
