@@ -1,7 +1,7 @@
 ---
 title: "Resources and References"
 date: 2020-10-12T20:18:29-07:00
-weight: 3005
+weight: 9005
 ---
 **Links to additional materials:**
 

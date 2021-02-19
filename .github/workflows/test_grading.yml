@@ -5,11 +5,10 @@ on:
     paths:
     - 'static/admin/userdata/tests/**.yml'
 
-
 # verify course registration
-# abstract pr file body from pr event
+# extract pr file body from pr event
 # curl answer key file
-# compare reponse body values with answer key values
+# compare response body values with answer key values
 # prepare grading report
 # post grading report to member profile repo
 # if passing grade, update member course record page
@@ -17,52 +16,56 @@ on:
 # close pr ticket
 
 jobs:
-  job_verify_membership:
-    name: verify_membership
+  job_verify_course_registration:
+    name: verify_course_registration
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.ismember.outputs.ismember }}
+      output1: ${{ steps.isregistered.outputs.isregistered }}
     steps:
       - name: review event details
         run: |
           env
           cat /home/runner/work/_temp/_github_workflow/event.json
-      - name: set source org/repo as org_repo
+      - name: set source org/repo as envar org_repo
+      # This is done because it seems GITHUB_REPOSITORY is a system-local default env not usable in the actions {{ env.var }} format
         run: |
           echo $(echo org_repo="$GITHUB_REPOSITORY") >> $GITHUB_ENV
-          echo $org_repo
-      - name: curl member record file
+      - name: curl course registration index 
         run: |
-          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-          "https://raw.githubusercontent.com/modernapsninja/admin-private/main/userdata/members/${{ github.event.sender.login }}_${{ github.event.sender.id }}.json" \
-          -o /tmp/raw_member_record_curl.json
-      - name: check if member record exists
+          curl \
+            -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            "https://api.github.com/repos/modernappsninja/${{ github.event.base.repo.name }}/contents/static/admin/userdata/registered_members/${{ github.event.sender.login }}.yml" \
+            -o /tmp/check_registration
+          # extract name field from response - note that name field is only present if file is found in index
+          cat /tmp/check_registration_response | jq -r '.name' >> /tmp/check_registration_response_name
+      - name: check if member record exists and set envar isregistered=[true/false]
         run: |
-          cat /tmp/raw_member_record_curl.json
-          if [ $(wc -l <"/tmp/raw_member_record_curl.json") -ge 2 ]
+          cat /tmp/check_registration_response_name
+          if [ "$(cat /tmp/check_registration_response_name)" = "${{ github.event.sender.login }}" ]
           then
-            echo ismember=true >> $GITHUB_ENV
+            echo isregistered=true >> $GITHUB_ENV
             echo "the requesting user is a member"
           else
-            echo ismember=false >> $GITHUB_ENV
+            echo isregistered=false >> $GITHUB_ENV
             echo "the requesting user is not a member"
           fi
-          echo $ismember
-      - id: ismember
-        if: env.ismember == 'true'
-        run: echo "::set-output name=ismember::true"
+          echo $isregistered
+      - id: isregistered
+        if: env.isregistered == 'true'
+        run: echo "::set-output name=isregistered::true"
       - name: if not member, post message to pr
-        if: env.ismember == 'false'
+        if: env.isregistered == 'false'
         run: |
           curl -X POST \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"event": "COMMENT", "body": "@${{ github.event.sender.login }} You must first register as a member at https://modernapps.ninja before you can register for a course. Please open a new registration request after you have completed the modernapps.ninja member registration. This Pull Request will now be closed, thank you!"}' \
+          -d '{"event": "COMMENT", "body": "@${{ github.event.sender.login }} You must first register for this course before submitting test responses. Please refer to the course introduction section for instructions on how to register. This Pull Request will now be closed, thank you!"}' \
           "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/reviews" \
           -o /tmp/pr_comment_post_response.json
           cat /tmp/pr_comment_post_response.json
       - name: if not member, close pr
-        if: env.ismember == 'false'
+        if: env.isregistered == 'false'
         run: |
           curl -X PATCH \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
@@ -71,11 +74,11 @@ jobs:
           "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}" \
           -o /tmp/close_pr_response.json
           cat /tmp/close_pr_response.json
-  job_course_registration:
-    name: course_registration
+  job_test_grading:
+    name: test_grading
     needs: job_verify_membership
     runs-on: ubuntu-latest
-    if: needs.job_verify_membership.outputs.ismember == 'true'
+    if: needs.job_verify_membership.outputs.isregistered == 'true'
     steps:
       - name: review event details
         run: |
@@ -88,11 +91,6 @@ jobs:
         run: |
           echo $(echo org_repo="$GITHUB_REPOSITORY") >> $GITHUB_ENV
           echo $org_repo
-      - name: curl member record file
-        run: |
-          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-          "https://raw.githubusercontent.com/modernapsninja/admin-private/main/userdata/members/${{ github.event.sender.login }}_${{ github.event.sender.id }}.json" \
-          -o /tmp/raw_member_record_curl.json
       - name: curl file list for pr
         run: |
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
@@ -102,6 +100,9 @@ jobs:
         run: |
           cat /tmp/pr_file_list.json | jq -r '.filename' > /tmp/pr_filename
           echo pr_filename=$(cat /tmp/pr_filename) >> $GITHUB_ENV
+      - name: set envar test_name as filename with extension removed
+        run: |
+          echo test_name=$(echo ${{ env.pr_filename }} | sed 's/\..*//g') >> $GITHUB_ENV
       - name: set raw link to pr file as envar pr_raw_file_url
         run: |
           cat /tmp/pr_file_list.json | jq -r '.raw_url' > /tmp/pr_filename
@@ -152,164 +153,92 @@ jobs:
           fi
       - name: prepare grade report
         run: |
-          echo "Member Grade Report for ${{ github.event.sender.login }} for ${{ env.pr_filename }}" > /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
-          echo "--------" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
-          echo "Test Result: ${{ env.passing_grade_phrase }}" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
-          echo "Minimum Passing Percentage: ${{ env.passing_percent }}%" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
-          echo "Percent of Questions You Answered Correctly: ${{ env.percent_correct }}%" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
-          echo "--------" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
-          echo "The following questions were incorrect in your test submission:" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
-          cat /tmp/wrong_answers >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}
+          echo "Member Grade Report for ${{ github.event.sender.login }} for ${{ env.test_name }}" > /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "--------" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "Member Github Account Login: ${{ github.event.sender.login }}" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "Member Github Account ID ${{ github.event.sender.id }}" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "Test Name: ${{ env.test_name }}" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "Course URL: https://modernappsninja.github.io/${{ github.event.base.repo.name }}/" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "--------" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "Test Result: ${{ env.passing_grade_phrase }}" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "Minimum Passing Percentage: ${{ env.passing_percent }}%" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "Percent of Questions You Answered Correctly: ${{ env.percent_correct }}%" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "--------" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          echo "The following questions were incorrect in your test submission:" >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
+          cat /tmp/wrong_answers >> /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt
       - name: encode grade report with base64 -w 0
-        run: cat /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }} | base64 -w 0 > /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}.base64
+        run: cat /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt | base64 -w 0 > /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt.base64
       - name: post grade report to member repo
         run: |
           curl -X PUT \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"message": "Posting Member Grade Report grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}", "content": "'$(cat /tmp/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}.base64)'"}' \
-          "https://api.github.com/repos/modernappsninjas/${{ github.event.sender.login }}/contents/static/userdata/courses/${{ github.event.base.repo.name }}/grade_report.pr${{ github.event.number }}.${{ env.pr_filename }}" \
+          -d '{"message": "Posting Member Grade Report grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt", "content": "'$(cat /tmp/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt.base64)'"}' \
+          "https://api.github.com/repos/modernappsninjas/${{ github.event.sender.login }}/contents/static/userdata/courses/${{ github.event.base.repo.name }}/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt" \
           -o /tmp/member_grade_report_post_response.json
           cat /tmp/member_grade_report_post_response.json
-      - name: if passing, update member course card
-      - name: if passing, post message to pr
-      - name: if not passing, post message to pr
-      - name: close pr
-
-          
-          
-          
-
-
-
-
-
-
-      - name: CLOSE pull request
+      - name: if passing, pull member record and course card files
+        if: env.passing_grade == 'true'
+        run: |
+          # Pull member record file
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://raw.githubusercontent.com/modernapsninjas/${{ github.event.sender.login }}/main/appdata/courses/${{ github.event.base.repo.name }}/coursecard/member_record.yml" \
+          -o /tmp/member_record.yml.old
+          # Pull latest student course card stub template
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://raw.githubusercontent.com/modernapsninja/${{ github.event.base.repo.name }}/main/static/admin/assets/coursecards/memberrepocard/student_course_card_stub.md" \
+          -o /tmp/student_course_card_stub.md
+          # Pull latest course_meta.yml card
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://raw.githubusercontent.com/modernapsninja/${{ github.event.base.repo.name }}/main/static/admin/assets/coursecards/course_meta.yml" \
+          -o /tmp/course_meta.yml
+      - name: if passing, prepare updated member course card
+        if: env.passing_grade == 'true'
+        run: |
+          # Update member course record file to reflect passing grade for this test
+          yq e 'Tests.${{ env.test_name }} = "[Test Completed with Passing Grade](https://github.com/modernappsninjas/${{ github.event.sender.login }}/static/userdata/courses/${{ github.event.base.repo.name }}/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt)"' /tmp/member_record.yml.old > /tmp/member_record.yml
+          # combine course meta, student course card stub and member record files to create new member course card file
+          cat /tmp/course_meta.yml > /tmp/member_course_card.md
+          cat /tmp/student_course_card_stub.md >> /tmp/member_course_card.md
+          cat /tmp/member_record.yml >> /tmp/member_course_card.md
+          cat /tmp/member_course_card.md
+          cat /tmp/member_course_card.md | base64 -w 0 >> /tmp/member_course_card.md.base64
+      - name: if passing, post updated member course card to member repo
+        if: env.passing_grade == 'true'
         run: |
           curl -X PUT \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"commit_title": "Course Registration for ${{ github.event.sender.login }}"}'                                                        \
-          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/merge" \
-          -o /tmp/course_registration_post_response.json
-          cat /tmp/course_registration_post_response.json
-      # - name: curl member record file
-      #   run: |
-      #     curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-      #     "https://raw.githubusercontent.com/modernapsninja/admin-private/main/userdata/members/${{ github.event.issue.user.login }}_${{ github.event.issue.user.id }}.json" \
-      #     -o /tmp/raw_member_record_curl.json
-      # - name: check if member record exists
-      #   run: |
-      #     cat /tmp/raw_member_record_curl.json
-      #     if [ $(wc -l <"/tmp/raw_member_record_curl.json") -ge 2 ]
-      #     then
-      #       echo ninja_org_member=true >> $GITHUB_ENV
-      #     else
-      #       echo ninja_org_member=false >> $GITHUB_ENV
-      #     fi
-      #     echo $duplicate_request
-      # - name: extract user preferred email and set as member_email
-      #   run: |
-      #     echo $(echo member_email=$(echo $(cat /tmp/issuebody.json | jq '.preferredEmailAddress' | sed 's/"//g' ))) >> $GITHUB_ENV
-      #     echo $member_email
-      # - name: extract user id and set as member_id # in future need to update this file to ensure a common env is used consistently for the same variable data
-      #   run: |
-      #     echo $(echo member_id="${{ github.event.issue.user.id }}") >> $GITHUB_ENV
-      #     echo $member_id
-      # - name: extract user login and set as member_id # in future need to update this file to ensure a common env is used consistently for the same variable data
-      #   run: |
-      #     echo $(echo member_id="${{ github.event.issue.user.login }}") >> $GITHUB_ENV
-      #     echo $member_id
-      # - name: set token as GITHUB_OAUTH_TOKEN
-      #   run: |
-      #     echo $(echo GITHUB_OAUTH_TOKEN="${{ secrets.NINJABOTGURU }}") >> $GITHUB_ENV
-      #     echo $GITHUB_OAUTH_TOKEN
-      # - name: set organization name as org_login
-      #   run: |
-      #     echo $(echo org_login="${{ github.event.organization.login }}") >> $GITHUB_ENV
-      #     echo $org_login
-      # - name: create member registration file for upload
-      #   run: |
-          
-      # - name: push new member record to static/userdata/registrations/
-      #   if: env.duplicate_request == 'false'
-      #   run: |
-      #     curl -X PUT \
-      #     -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-      #     -H "Accept: application/vnd.github.v3+json" \
-      #     -d '{"message": "Updating Member Record File For ${{ github.event.issue.user.login }}", "content": "'$(cat /tmp/issuebody.json | base64 -w 0 )'"}'                                                        \
-      #     "https://api.github.com/repos/modernappsninja/admin-private/contents/userdata/members/${{ github.event.issue.user.login }}_${{ github.event.issue.user.id }}.json" \
-      #     -o /tmp/member_record_post_response.json
-      #     cat /tmp/member_record_post_response.json
-      # - name: clone modernappsninja.github.io repo
-      #   run: |
-      #     git clone https://${{ secrets.NINJABOTGURU }}:x-oauth-basic@github.com/modernappsninja/modernappsninja.github.io.git
-      #     cd modernappsninja.github.io
-      #     pwd
-      # - name: curl orgteamregapicall.sh and make executable
-      #   if: env.duplicate_request == 'false'
-      #   run: |
-      #     curl https://modernapps.ninja/admin/orgteamregapicall.sh -o /tmp/orgteamregapicall.sh
-      #     sudo chmod +x /tmp/orgteamregapicall.sh
-      # - name: make org and team invite api call
-      #   if: env.duplicate_request == 'false'
-      #   run: |
-      #     /tmp/orgteamregapicall.sh
-      # - name: create hub config file
-      #   run: |
-      #     echo "---" > ~/.config/hub
-      #     echo "github.com: " >> ~/.config/hub
-      #     echo "- oauth_token: ${{ secrets.NINJABOTGURU }}" >> ~/.config/hub
-      #     echo "  user: modernappsninjabot" >> ~/.config/hub
-      #     cat ~/.config/hub
-      # - name: if duplicate_request true, send email duplicate registration notice
-      #   if: env.duplicate_request == 'true'
-      #   uses: dawidd6/action-send-mail@v2
-      #   continue-on-error: true
-      #   with:
-      #     server_address: smtp.gmail.com
-      #     server_port: 465
-      #     username: modernappsninjabot@gmail.com
-      #     password: ${{secrets.NINJABOT_MAIL_PASSWORD}}
-      #     to: ${{ env.requesting_user_email }}
-      #     from: modernappsninjabot@gmail.com
-      #     subject: Your ModernApps Ninja User Registration is a Duplicate
-      #     body: |
-      #       Your registration request with ModernApps Ninja for github user ${{ github.event.issue.user.login }} was recieved, but was found to be a duplicate request.
-      #       When you open a registration request, the github account you are logged in as at the time is used for the registration request.
-      #       If you intended to request registration for a different account, please log in with the desired account first, and then open a new registration request ticket.
-      #       If you believe this message to be in error, or are having issues with your account registration, please open a support request ticket at https://github.com/modernappsninja/modernappsninja.github.io
-      # - name: if duplicate_request false, send email registration complete notice
-      #   if: env.duplicate_request == 'false'
-      #   uses: dawidd6/action-send-mail@v2
-      #   continue-on-error: true
-      #   with:
-      #     server_address: smtp.gmail.com
-      #     server_port: 465
-      #     username: modernappsninjabot@gmail.com
-      #     password: ${{secrets.NINJABOT_MAIL_PASSWORD}}
-      #     to: ${{ env.requesting_user_email }}
-      #     from: modernappsninjabot@gmail.com
-      #     subject: An invite has been sent to ${{ github.event.issue.user.login }} to join the ModernApps Ninja Github org.
-      #     body: |
-      #       Your registration request with ModernApps Ninja for github user ${{ github.event.issue.user.login  }} was recieved and an invitation to join the org has been sent to the email associated with the ${{ github.event.issue.user.login }} is dupicate, closing" --message "The github user ${{ github.event.issue.user.login }} Github account.
-      #       Before registration can be finalized for the requesting github account, you will need to view the invitation email sent by github to the email address associated with the ${{ github.event.issue.user.login }} is dupicate, closing" --message "The github user ${{ github.event.issue.user.login }} Github account.
-      #       After you accept the invitation for the account to join the ModernApps Ninja Github account, a workflow will be triggered that will complete your user registration and setup your member profile page, and an email will be sent to this address when the process is complete. 
-      #       Thank you for your participation and welcome to the ModernApps Ninja Community!
-      # - name: if duplicate_request true, append message to issue ticket and close ticket
-      #   if: env.duplicate_request == 'true'
-      #   run: |
-      #     cd modernappsninja.github.io
-      #     hub issue update ${{ github.event.issue.number }} --message "registration request for user ${{ github.event.issue.user.login }} is dupicate, closing" --message "The github user ${{ github.event.issue.user.login }} is already registered. This request has been marked as a dupicate request and will be closed."
-      #     hub issue update ${{ github.event.issue.number }} -s closed
-      # - name: if duplicate_request false, append message to issue ticket and close ticket
-      #   if: env.duplicate_request == 'false'
-      #   run: |
-      #     cd modernappsninja.github.io
-      #     hub issue update ${{ github.event.issue.number }} --message "registration request for user ${{ github.event.issue.user.login }} has been processed" --message "The github user ${{ github.event.issue.user.login }} has been sent an invite to join the modernapps ninja org, and this issue ticket will now be closed."
-      #     hub issue update ${{ github.event.issue.number }} -s closed
-      # - name: transfer issue ticket to admin-private
-      #   run: |
-      #     cd modernappsninja.github.io
-      #     hub issue transfer ${{ github.event.issue.number }} ${{ github.event.organization.login }}/admin-private
+          -d '{"message": "Posting Member Grade Report grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt", "content": "'$(cat /tmp/member_course_card.md.base64)'"}' \
+          "https://api.github.com/repos/modernappsninjas/${{ github.event.sender.login }}/contents/content/english/course/${{ github.event.base.repo.name }}.md" \
+          -o /tmp/member_course_card_post_response.json
+          cat /tmp/member_course_card_post_response.json
+      - name: if passing, post message to pr
+        if: env.passing_grade == 'true'
+        run: |
+          curl -X POST \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"event": "COMMENT", "body": "@${{ github.event.sender.login }} Congratulations, you have passed the test! Your [grade report](https://github.com/modernappsninjas/${{ github.event.sender.login }}/static/userdata/courses/${{ github.event.base.repo.name }}/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt) and [course record card](https://modernappsninjas.github.io/${{ github.event.sender.login }}/course/${{ github.event.base.repo.name }}.md) have been updated in your member repository to reflect your passing grade.Please note this PR will be closed and not merged to keep the answer sheet clear for other users. We recommend deleting the branch in your fork you used to submit this PR."}' \
+          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/reviews" \
+          -o /tmp/pr_comment_post_response.json
+          cat /tmp/pr_comment_post_response.json
+      - name: if not passing, post message to pr
+        if: env.passing_grade == 'false'
+        run: |
+          curl -X POST \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"event": "COMMENT", "body": "@${{ github.event.sender.login }} This message is to inform you that you did not successfully pass ${{ env.test_name }}. Please see your [grade report](https://github.com/modernappsninjas/${{ github.event.sender.login }}/static/userdata/courses/${{ github.event.base.repo.name }}/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.txt) for additional details. Please note this PR will be closed and not merged to keep the answer sheet clear for other users. We recommend deleting the branch in your fork you used to submit this PR."}' \
+          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/reviews" \
+          -o /tmp/pr_comment_post_response.json
+          cat /tmp/pr_comment_post_response.json
+      - name: CLOSE pull request
+        run: |
+          curl -X PATCH \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"state": "closed"}'                                                        \
+          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}" \
+          -o /tmp/pr_close_response.json
+          cat /tmp/pr_close_response.json

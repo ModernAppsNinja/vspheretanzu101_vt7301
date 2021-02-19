@@ -1,13 +1,13 @@
 ---
 ## This Document Provides the Front Matter and Metadata for the Course Information page used in the modernapps.ninja homepage and the member profile page.
 ### Hugo Template Metadata
-title: "$course_title"
-date: "$current_date"
+title: "New ModernApps Ninja Course Template"
+date: "2021-02-16T03:46:00Z"
 draft: true
 # meta description
-description: "$course_description"
+description: "Learn how to create a ModernApps Ninja Course with the New Course Template"
 # course thumbnail
-image: "https://modernapps.ninja/images/courses/$course_short_title.jpg"
+image: "https://modernapps.ninja/images/courses/course_repo_template_ct8279.jpg"
 # taxonomy
 tags: ["Tanzu Portfiolio"]
 # teacher
@@ -17,11 +17,12 @@ duration: "0 Hours"
 # course fee
 fee: "Free!"
 # apply url
-apply_url: "https://modernapps.github.io/$course_repo_name"
+apply_url: "https://modernapps.github.io/course_repo_template_ct8279/"
 # type
 type: "course"
 ### Extended Ninja Course Metadata
-content_id: $content_id
-course_short_title: $course_short_title
-course_repo_name: $course_repo_name
+content_id: "ct8279"
+course_short_title: "course_repo_template"
+course_navbar_title: "New Course Template"
+course_repo_name: course_repo_template_ct8279
 ---

@@ -32,11 +32,11 @@ The following link will direct your browser to a github web-based document edito
 
 Please right click the following link and select the option to open it in a new browser tab, so you can keep this instruction page open in the current tab to guide you through the process. 
 
-[Right Click Here and select the option to open link in new tab to view the course registration form](https://github.com/$course_repo_name/new/main/static/admin/userdata/registered_members)
+[Right Click Here and select the option to open link in new tab to view the course registration form](https://github.com/modernappsninja/course_repo_template_ct8279/new/main/static/admin/userdata/registered_members)
 
 #### Step 2 - Name your file
 
-Note the page displays a message that `You’re making changes in a project you don’t have write access to. Submitting a change will write it to a new branch in your fork YOUR_GITHUB_USERNAME/$course_repo_name, so you can send a pull request.`
+Note the page displays a message that `You’re making changes in a project you don’t have write access to. Submitting a change will write it to a new branch in your fork YOUR_GITHUB_USERNAME/COURSE_REPOSITORY_NAME, so you can send a pull request.`
 
 The pull request process works by submitting a copy of your new or updated file to the repository, which will only be applied to the course repository if a course administrator approves the request. Because you do not have write access to the repository, github will create a special copy called a `fork` of the course repository within your github account with your new or updated files, and use your copy to save the updates you're submitting to the official course repository as shown in the following steps.
 
@@ -46,19 +46,19 @@ The following screenshot shows an example of this step using the github username
 
 **Note:** If needed, you can verify your github username by clicking on your github profile menu, which can be found on the upper right hand corner on any github page if you are signed in.
 
-![Screenshot of File Naming](/$course_repo_name/admin/assets/images/course_registration_file_naming.png)
+![Screenshot of File Naming](https://modernapps.ninja/course_repo_template_ct8279/admin/assets/images/course_registration_file_naming.png)
 
 #### Step 3 - Add a line to your file
 
 On line 1 in the document editor, type `status: in-progress` as shown in the following screenshot:
 
-![Screenshot of File Editing](/$course_repo_name/admin/assets/images/course_registration_file_editing.png)
+![Screenshot of File Editing](https://modernapps.ninja/course_repo_template_ct8279/admin/assets/images/course_registration_file_editing.png)
 
 #### Step 4 - Submit your registration document
 
 Scroll to the bottom of the registration document page and click `Propose New File` as shown in the following image:
 
-![Propose New File Screenshot](/$course_repo_name/admin/assets/images/propose_new_file.png)
+![Propose New File Screenshot](https://modernapps.ninja/course_repo_template_ct8279/admin/assets/images/propose_new_file.png)
 
 After you click `Propose New File`, your browser will be redirected to the `Comparing Changes` page with all the configuration all setup so all you sould need to do is click `Create Pull Request` --- but before you click, please review the other details shown on the comparing changes and observe that the file you created and the lines added are shown, so you can easily review and verify your proposed changes before submitting.
 
