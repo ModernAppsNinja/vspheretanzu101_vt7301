@@ -86,33 +86,34 @@ jobs:
       - name: pull course meta file
         run: |
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-          "https://raw.githubusercontent.com/${{ env.org_repo }}/main/userdata/members/${{ github.event.client_payload.member_login }}_${{ github.event.client_payload.member_github_id }}.yml" \
-          -o /tmp/member_record.yml
+          "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/course_meta.yml" \
+          -o /tmp/course_meta.yml
       - name: pull member course card stub
         run: |
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-          "https://raw.githubusercontent.com/modernappsninja/admin-private/main/userdata/members/${{ github.event.client_payload.member_login }}_${{ github.event.client_payload.member_github_id }}.yml" \
-          -o /tmp/member_record.yml
+          "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/memberrepocard/member_course_card_stub.md" \
+          -o /tmp/member_course_card_stub.md
       - name: pull member course record template
         run: |
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-          "https://raw.githubusercontent.com/modernappsninja/admin-private/main/userdata/members/${{ github.event.client_payload.member_login }}_${{ github.event.client_payload.member_github_id }}.yml" \
-          -o /tmp/member_record.yml
-      - name: create course catalog card
+          "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/memberrepocard/member_course_record.yml" \
+          -o /tmp/member_course_record.yml
+      - name: create member course record card
         run: |
           cd ${{ env.source_repo_name }}
-          cat static/admin/assets/coursecards/course_meta.yml > /tmp/${{ env.course_repo_name }}.md
-          cat static/admin/assets/coursecards/catalogcard/catalog_course_card >> /tmp/${{ env.course_repo_name }}.md
-          cat /tmp/${{ env.course_repo_name }}.md | base64 -w 0 > /tmp/${{ env.course_repo_name }}.md.base64
-
-      # - name: build member course card file 
-      # - name: upload memver course card file to member repo
-      # - name: prepare repo with scaffolding for tests
-      - name: clone course repo
+          cat /tmp/course_meta.yml > /tmp/${{ github.event.repository.name }}.md
+          cat /tmp/member_course_card_stub.md >> /tmp/${{ github.event.repository.name }}.md
+          cat /tmp/member_course_record.yml >> /tmp/${{ github.event.repository.name }}.md
+          cat /tmp/${{ github.event.repository.name }}.md | base64 -w 0 > /tmp/${{ github.event.repository.name }}.md.base64
+      - name: post member course record card to requesting member repo
         run: |
-          git clone https://${{ secrets.NINJABOTGURU }}:x-oauth-basic@github.com/modernappsninja/modernappsninja.github.io.git
-          cd modernappsninja.github.io
-          pwd
+          curl -X PUT \
+            -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            -d '{"message": "Adding new member course record card for: ${{ github.event.repository.name }}", "content": "'$(cat /tmp/${{ github.event.repository.name  }}.md.base64)'"' \
+            "https://api.github.com/repos/modernappsninjas/${{ github.event.sender.login }}/contents/content/english/course/${{ github.event.repository.name }}.md" \
+            -o /tmp/record_card_post_response.json
+          cat /tmp/record_card_post_response.json
       - name: merge pull request
         run: |
           curl -X PUT \
@@ -120,5 +121,23 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -d '{"commit_title": "Course Registration for ${{ github.event.sender.login }}"}'                                                        \
           "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/merge" \
-          -o /tmp/course_registration_post_response.json
-          cat /tmp/course_registration_post_response.json
+          -o /tmp/merge_post_response.json
+          cat /tmp/merge_post_response.json
+      - name: post message to pr
+        run: |
+          curl -X POST \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"event": "COMMENT", "body": "@'${{ github.event.sender.login }}' you have successfully registered for this course. A new member record card for this course has been posted to your member repository at [https://github.com/modernappsninjas/${{ github.event.sender.login }}/course/${{ github.event.repository.name }}.md. This PR will now be closed."}' \
+          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/reviews" \
+          -o /tmp/pr_comment_post_response.json
+          cat /tmp/pr_comment_post_response.json
+      - name: close pr
+        run: |
+          curl -X PATCH \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          -H "Accept: application/vnd.github.v3+json" \
+          -d '{"state": "closed"}' \
+          "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}" \
+          -o /tmp/close_pr_response.json
+          cat /tmp/close_pr_response.json
