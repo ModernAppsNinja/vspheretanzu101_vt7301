@@ -308,7 +308,7 @@ jobs:
         run: |
           cd ${{ env.source_repo_name }}
           sed -i '/^title:/c\title: "${{ github.event.inputs.course_title }}"' content/en/docs/_index.md
-          sed -i '/^linkTitle:/c\linkTitle: "${{ github.event.inputs.course_navbar_title }}"' content/en/docs/_index.html
+          sed -i '/^linkTitle:/c\linkTitle: "${{ github.event.inputs.course_navbar_title }}"' content/en/docs/_index.md
           cat content/en/docs/_index.md
       - name: set git origin to new course repo and push
         run: |
