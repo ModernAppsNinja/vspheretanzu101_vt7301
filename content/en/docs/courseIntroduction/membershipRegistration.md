@@ -42,7 +42,7 @@ The pull request process works by submitting a copy of your new or updated file 
 
 In your browser tab to the new registration document, above the document editor in the file name field, type in the name of the file in the format `your_lowercase_github_username.yml`, replacing the value your_lowercase_github_username with the username for your github account in lowercase letters. 
 
-The following screenshot shows an example of this step using the github username `oni-no-hanzo`
+The following screenshot shows an example of this step using the github username `Oni-no-Hanzo`
 
 **Note:** If needed, you can verify your github username by clicking on your github profile menu, which can be found on the upper right hand corner on any github page if you are signed in.
 
