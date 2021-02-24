@@ -412,7 +412,7 @@ jobs:
           echo course_team_slug=$(cat /tmp/course_team_slug) >> $GITHUB_ENV
       - name: add course creation requesting github user account to modernapps ninja maintainers team
         run: |
-          curl -X POST \
+          curl -X PUT \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
           -d '{"role":"member"}' \
@@ -421,7 +421,7 @@ jobs:
           cat /tmp/add_maintainer_response.json
       - name: add course creation requesting github user account to course team as team maintainer
         run: |
-          curl -X POST \
+          curl -X PUT \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
           -d '{"role":"maintain"}' \
