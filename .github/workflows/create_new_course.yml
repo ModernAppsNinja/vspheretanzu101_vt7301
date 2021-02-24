@@ -426,7 +426,7 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -d '{"role":"maintain"}' \
           "https://api.github.com/orgs/modernappsninja/teams/${{ env.course_team_slug }}/memberships/${{ github.event.sender.login }}" \
-          -o /tmp/add__course_maintainer_response.json
+          -o /tmp/add_course_maintainer_response.json
           cat /tmp/add_course_maintainer_response.json
       - name: add course repo to modernappsninja triagers team with triage permissions
         run: |
