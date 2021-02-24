@@ -454,7 +454,7 @@ jobs:
           -d '{"permission":"maintain"}' \
           "https://api.github.com/orgs/modernappsninja/teams/${{ env.maintainers_team_slug }}/repos/modernappsninja/${{ env.course_repo_name }}" \
           -o /tmp/add_repo_to_maintainers_team_response.json
-          cat /tmp/add_repo_to_maintatiners_team_response.json
+          cat /tmp/add_repo_to_maintainers_team_response.json
       - name: add course repo to modernappsninja admins team with admin permissions
         run: |
           curl -X PUT \
