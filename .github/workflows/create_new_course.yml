@@ -514,7 +514,7 @@ jobs:
           cat /tmp/create_label_returns.json
       - name: create discussion message on course team page with details on new course assets
         run: |
-          body='Welcome to the '${{ env.course_repo_name }}'' course team @'${{ github.event.sender.login }}'!
+          body='Welcome to the '${{ env.course_repo_name }}' course team @'${{ github.event.sender.login }}'!
           The  new course repository for '${{ env.course_repo_name }}' is now available at:
           [https://github.com/modernappsninja/'${{ env.course_repo_name }}'/](https://github.com/modernappsninja/'${{ env.course_repo_name }}'/)
           The new course is now in a live but unpublished state. 
@@ -532,7 +532,7 @@ jobs:
           cat /tmp/add_course_team_discussion_response.json
       - name: create issue ticket on new course repo with details on new course assets
         run: |
-          body='Welcome to the '${{ env.course_repo_name }}'' course team @'${{ github.event.sender.login }}'!
+          body='Welcome to the '${{ env.course_repo_name }}' course team @'${{ github.event.sender.login }}'!
           The  new course repository for '${{ env.course_repo_name }}' is now available at:
           [https://github.com/modernappsninja/'${{ env.course_repo_name }}'/](https://github.com/modernappsninja/'${{ env.course_repo_name }}'/)
           The new course is now in a live but unpublished state. 
