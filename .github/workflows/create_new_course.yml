@@ -310,6 +310,10 @@ jobs:
           sed -i '/^title:/c\title: "${{ github.event.inputs.course_title }}"' content/en/docs/_index.md
           sed -i '/^linkTitle:/c\linkTitle: "${{ github.event.inputs.course_navbar_title }}"' content/en/docs/_index.md
           cat content/en/docs/_index.md
+      - name: delete create course workflow as it should only be present and used from the new course template repository and not from child sites
+        run: |
+          cd ${{ env.source_repo_name }}
+          sudo rm -f .github/workflows/create_new_course.yml
       - name: set git origin to new course repo and push
         run: |
           cd ${{ env.source_repo_name }}
@@ -547,6 +551,6 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -d '{"title":"Welcome to the new course repository!","body":"$body"}' \
           "https://api.github.com/repos/modernappsninja/${{ env.course_repo_name }}/issues" \
-          -o /tmp/add__issue_message_response.json
+          -o /tmp/add_issue_message_response.json
           cat /tmp/add_issue_message_response.json
       # - name: remove create course and any other workflows from the template not relevant for course repositories
