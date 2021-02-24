@@ -358,43 +358,43 @@ jobs:
           "https://api.github.com/orgs/modernappsninja/teams" \
           -o /tmp/ninja_teams_list.json
           # gather members team id
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Members'")) | .[].id' > /tmp/members_team_id
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Members'")) | .[].id' > /tmp/members_team_id
           cat /tmp/members_team_id
           echo members_team_id=$(cat /tmp/members_team_id) >> $GITHUB_ENV
           # gather members team slug
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Members'")) | .[].slug' > /tmp/members_team_slug
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Members'")) | .[].slug' > /tmp/members_team_slug
           cat /tmp/members_team_slug
           echo members_team_slug=$(cat /tmp/members_team_slug) >> $GITHUB_ENV
           # gather triagers team id
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Triagers'")) | .[].id' > /tmp/triagers_team_id
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Triagers'")) | .[].id' > /tmp/triagers_team_id
           cat /tmp/triagers_team_id
           echo triagers_team_id=$(cat /tmp/triagers_team_id) >> $GITHUB_ENV
           # gather triagers team slug
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Triagers'")) | .[].slug' > /tmp/triagers_team_slug
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Triagers'")) | .[].slug' > /tmp/triagers_team_slug
           cat /tmp/triagers_team_slug
           echo triagers_team_slug=$(cat /tmp/triagers_team_slug) >> $GITHUB_ENV
           # gather collaborators team id
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Collaborators'")) | .[].id' > /tmp/collaborators_team_id
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Collaborators'")) | .[].id' > /tmp/collaborators_team_id
           cat /tmp/collaborators_team_id
           echo collaborators_team_id=$(cat /tmp/collaborators_team_id) >> $GITHUB_ENV
           # gather collaborators team slug
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Collaborators'")) | .[].slug' > /tmp/collaborators_team_slug
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Collaborators'")) | .[].slug' > /tmp/collaborators_team_slug
           cat /tmp/collaborators_team_slug
           echo collaborators_team_slug=$(cat /tmp/collaborators_team_slug) >> $GITHUB_ENV
           # gather maintainers team id
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Maintainers'")) | .[].id' > /tmp/maintainers_team_id
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Maintainers'")) | .[].id' > /tmp/maintainers_team_id
           cat /tmp/maintainers_team_id
           echo maintainers_team_id=$(cat /tmp/maintainers_team_id) >> $GITHUB_ENV
           # gather maintainers team slug
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Maintainers'")) | .[].slug' > /tmp/maintainers_team_slug
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Maintainers'")) | .[].slug' > /tmp/maintainers_team_slug
           cat /tmp/maintainers_team_slug
           echo maintainers_team_slug=$(cat /tmp/maintainers_team_slug) >> $GITHUB_ENV
           # gather admins team id
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Admins'")) | .[].id' > /tmp/admins_team_id
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Admins'")) | .[].id' > /tmp/admins_team_id
           cat /tmp/admins_team_id
           echo admins_team_id=$(cat /tmp/admins_team_id) >> $GITHUB_ENV
           # gather admins team slug
-          cat /tmp/ninja_teams_list.json | jq 'map(select(.name=="'Admins'")) | .[].slug' > /tmp/admins_team_slug
+          cat /tmp/ninja_teams_list.json | jq -r 'map(select(.name=="'Admins'")) | .[].slug' > /tmp/admins_team_slug
           cat /tmp/admins_team_slug
           echo admins_team_slug=$(cat /tmp/admins_team_slug) >> $GITHUB_ENV
       - name: create new course team in org structure as modernappsninja/members/triagers/course_repo_name
@@ -406,9 +406,9 @@ jobs:
           "https://api.github.com/orgs/modernappsninja/teams" \
           -o /tmp/add_course_team_response.json
           cat /tmp/add_course_team_response.json          
-          cat /tmp/add_course_team_response.json | jq '.id' > /tmp/course_team_id
+          cat /tmp/add_course_team_response.json | jq -r '.id' > /tmp/course_team_id
           echo course_team_id=$(cat /tmp/course_team_id) >> $GITHUB_ENV
-          cat /tmp/add_course_team_response.json | jq '.slug' > /tmp/course_team_slug
+          cat /tmp/add_course_team_response.json | jq -r '.slug' > /tmp/course_team_slug
           echo course_team_slug=$(cat /tmp/course_team_slug) >> $GITHUB_ENV
       - name: add course creation requesting github user account to modernapps ninja maintainers team
         run: |
