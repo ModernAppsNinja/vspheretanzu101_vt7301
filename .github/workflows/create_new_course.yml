@@ -463,7 +463,7 @@ jobs:
           -d '{"permission":"admin"}' \
           "https://api.github.com/orgs/modernappsninja/teams/${{ env.admins_team_slug }}/repos/modernappsninja/${{ env.course_repo_name }}" \
           -o /tmp/add_repo_admins_team_response.json
-          cat /tmp/add_repo_to_admins_response.json
+          cat /tmp/add_repo_admins_team_response.json
       - name: create course catalog card
         run: |
           cd ${{ env.source_repo_name }}
