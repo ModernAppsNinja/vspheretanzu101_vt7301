@@ -528,7 +528,7 @@ jobs:
           -H "Accept: application/vnd.github.v3+json" \
           -d '{"title":"Welcome to the course team!","body":"$body"}' \
           "https://api.github.com/orgs/modernappsninja/teams/${{ env.course_team_slug }}/discussions" \
-          -o /tmp/add__course_team_discussion_response.json
+          -o /tmp/add_course_team_discussion_response.json
           cat /tmp/add_course_team_discussion_response.json
       - name: create issue ticket on new course repo with details on new course assets
         run: |
