@@ -514,38 +514,38 @@ jobs:
           cat /tmp/create_label_returns.json
       - name: create discussion message on course team page with details on new course assets
         run: |
-          body='Welcome to the '${{ env.course_repo_name }}' course team @'${{ github.event.sender.login }}'!
-          The  new course repository for '${{ env.course_repo_name }}' is now available at:
-          [https://github.com/modernappsninja/'${{ env.course_repo_name }}'/](https://github.com/modernappsninja/'${{ env.course_repo_name }}'/)
+          body='Welcome to the ${{ env.course_repo_name }} course team @${{ github.event.sender.login }}!
+          The  new course repository for ${{ env.course_repo_name }} is now available at:
+          [https://github.com/modernappsninja/${{ env.course_repo_name }}/](https://github.com/modernappsninja/${{ env.course_repo_name }}/)
           The new course is now in a live but unpublished state. 
           You can view your new course website in the same way as if it were published, the key difference is it is not yet shown in the modernapps.ninja course catalog.
           You can view instructions on customizing and publishing the new course on the new course website at:
-          [https://modernapps.ninja/'${{ env.course_repo_name }}'/](https://modernapps.ninja/'${{ env.course_repo_name }}'/)
+          [https://modernapps.ninja/${{ env.course_repo_name }}/](https://modernapps.ninja/${{ env.course_repo_name }}/)
           You can find further information on customizing and publishing the course on the [New Course Template Site](https://modernapps.ninja/course_repo_template_ct8279/)
           Thank you for contributing to the ModernApps Ninja Community!'
           curl -X POST \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"title":"Welcome to the course team!","body":"'$body'"}' \
+          -d '{"title":"Welcome to the course team!","body":"$body"}' \
           "https://api.github.com/orgs/modernappsninja/teams/${{ env.course_team_slug }}/discussions" \
           -o /tmp/add__course_team_discussion_response.json
           cat /tmp/add_course_team_discussion_response.json
       - name: create issue ticket on new course repo with details on new course assets
         run: |
-          body='Welcome to the '${{ env.course_repo_name }}' course team @'${{ github.event.sender.login }}'!
-          The  new course repository for '${{ env.course_repo_name }}' is now available at:
-          [https://github.com/modernappsninja/'${{ env.course_repo_name }}'/](https://github.com/modernappsninja/'${{ env.course_repo_name }}'/)
+          body='Welcome to the ${{ env.course_repo_name }} course team @${{ github.event.sender.login }}!
+          The  new course repository for ${{ env.course_repo_name }} is now available at:
+          [https://github.com/modernappsninja/${{ env.course_repo_name }}/](https://github.com/modernappsninja/${{ env.course_repo_name }}/)
           The new course is now in a live but unpublished state. 
           You can view your new course website in the same way as if it were published, the key difference is it is not yet shown in the modernapps.ninja course catalog.
           You can view instructions on customizing and publishing the new course on the new course website at:
-          [https://modernapps.ninja/'${{ env.course_repo_name }}'/](https://modernapps.ninja/'${{ env.course_repo_name }}'/)
+          [https://modernapps.ninja/${{ env.course_repo_name }}/](https://modernapps.ninja/${{ env.course_repo_name }}/)
           You can find further information on customizing and publishing the course on the [New Course Template Site](https://modernapps.ninja/course_repo_template_ct8279/)
           Please close this issue ticket, you can view it again any time by viewing closed issue tickets.
           Thank you for contributing to the ModernApps Ninja Community!'
           curl -X POST \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"title":"Welcome to the new course repository!","body":"'$body'"}' \
+          -d '{"title":"Welcome to the new course repository!","body":"$body"}' \
           "https://api.github.com/repos/modernappsninja/${{ env.course_repo_name }}/issues" \
           -o /tmp/add__issue_message_response.json
           cat /tmp/add_issue_message_response.json
