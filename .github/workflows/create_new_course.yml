@@ -416,7 +416,7 @@ jobs:
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
           -d '{"role":"member"}' \
-          "https://api.github.com/orgs/modernappsninja/teams/${{ env.maintainters_team_slug }}/memberships/${{ github.event.sender.login }}" \
+          "https://api.github.com/orgs/modernappsninja/teams/${{ env.maintainers_team_slug }}/memberships/${{ github.event.sender.login }}" \
           -o /tmp/add_maintainer_response.json
           cat /tmp/add_maintainer_response.json
       - name: add course creation requesting github user account to course team as team maintainer
