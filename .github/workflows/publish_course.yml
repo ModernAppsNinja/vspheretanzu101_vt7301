@@ -416,11 +416,11 @@ jobs:
               "https://api.github.com/repos/modernappsninja/mdernappsninja.github.io/contents/course/${{ env.content_id_candidate }}" \
               -o /tmp/content_id_post_response.json
             cat /tmp/content_id_post_response.json
-      - name: any other scaffolding needed? tests? (create test key, publish/update course catalog)
-        run: |
+      # - name: any other scaffolding needed? tests? (create test key, publish/update course catalog)
+      #   run: |
          
-      - name: add course publishing workflow to template
-      - name: add issue ticket to new repo
+      # - name: add course publishing workflow to template
+      # - name: add issue ticket to new repo
 
 
 

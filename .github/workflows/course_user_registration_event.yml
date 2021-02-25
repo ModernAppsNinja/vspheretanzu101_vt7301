@@ -132,7 +132,6 @@ jobs:
         run: |
           cat /tmp/pr_file_list.json | jq -r '.filename' > /tmp/pr_filename
           echo pr_filename=$(cat /tmp/pr_filename) >> $GITHUB_ENV
-      - name: get sha value for member created file, needed for the next step to delete the file
       - name: gather merged member registration file sha
         run: |
           curl \

@@ -1,4 +1,4 @@
-name: new_user_registration
+name: request completion certificate
 on:
   issues:
     types: [opened]
@@ -6,7 +6,7 @@ on:
 jobs:
   job_new_member_invitation:
     name: new_member_invitation
-    if: contains( toJson(github), 'newuserregistration' )
+    if: contains( toJson(github), 'requestcompletioncertificate' )
     runs-on: ubuntu-latest
     steps:
       - name: review event details
