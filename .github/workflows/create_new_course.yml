@@ -553,4 +553,3 @@ jobs:
           "https://api.github.com/repos/modernappsninja/${{ env.course_repo_name }}/issues" \
           -o /tmp/add_issue_message_response.json
           cat /tmp/add_issue_message_response.json
-      # - name: remove create course and any other workflows from the template not relevant for course repositories
