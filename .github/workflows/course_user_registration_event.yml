@@ -19,11 +19,11 @@ jobs:
       - name: set source repo as org_repo
         run: |
           echo $(echo org_repo="$GITHUB_REPOSITORY") >> $GITHUB_ENV
-          echo $org_repo
       - name: curl member record file
         run: |
+          echo "org_repo is ${{ env.org_repo }}"
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-          "https://api.github.com/repos/modernappsninja/admin-private/contents/static/admin/userdata/members/${{ github.event.sender.login }}_${{ github.event.sender.id }}.yml" \
+          "https://api.github.com/repos/modernappsninja/admin-private/contents/userdata/members/${{ github.event.sender.login }}_${{ github.event.sender.id }}.yml" \
           -o /tmp/raw_member_record_curl.json
           cat /tmp/raw_member_record_curl.json
       - name: set envar raw_member_curl_name
@@ -32,8 +32,10 @@ jobs:
           echo raw_member_curl_name=$(cat /tmp/raw_member_record_curl_name) >> $GITHUB_ENV
       - name: check if member record alredy exists to determine if this is a duplicate request
         run: |
+          echo "curl name is: ${{ env.raw_member_curl_name }}"
+          echo "login + id is ${{ github.event.sender.login }}_${{ github.event.sender.id }}"
           cat /tmp/raw_member_record_curl.json
-          if [ "${{ env.raw_member_record_curl_name }}" = "${{ github.event.issue.user.login }}_${{ github.event.issue.user.id }}.yml" ]
+          if [ "${{ env.raw_member_curl_name }}" = "${{ github.event.sender.login }}_${{ github.event.sender.id }}.yml" ]
           then
             echo ismember=true >> $GITHUB_ENV
             echo "the requesting user is a member"
@@ -88,33 +90,42 @@ jobs:
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/course_meta.yml" \
           -o /tmp/course_meta.yml
+          cat /tmp/course_meta.yml
       - name: pull member course card stub
         run: |
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/memberrepocard/member_course_card_stub.md" \
           -o /tmp/member_course_card_stub.md
+          cat /tmp/member_course_card_stub.md
       - name: pull member course record template
         run: |
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/memberrepocard/member_course_record.yml" \
           -o /tmp/member_course_record.yml
+          cat /tmp/member_course_record.yml
       - name: create member course record card
         run: |
           cd ${{ env.source_repo_name }}
+          sed -i '/^draft:/c\draft: false' /tmp/course_meta.yml
           cat /tmp/course_meta.yml > /tmp/${{ github.event.repository.name }}.md
           cat /tmp/member_course_card_stub.md >> /tmp/${{ github.event.repository.name }}.md
           cat /tmp/member_course_record.yml >> /tmp/${{ github.event.repository.name }}.md
+          cat /tmp/${{ github.event.repository.name }}.md
           cat /tmp/${{ github.event.repository.name }}.md | base64 -w 0 > /tmp/${{ github.event.repository.name }}.md.base64
+          echo record_card_string=$(cat /tmp/${{ github.event.repository.name }}.md.base64)
+          echo record_card_string=$(cat /tmp/${{ github.event.repository.name }}.md.base64) >> $GITHUB_ENV
       - name: post member course record card to requesting member repo
         run: |
+          echo $record_card_string
+          echo ${{ env.record_card_string }}
           curl -X PUT \
             -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            -d '{"message": "Adding new member course record card for: ${{ github.event.repository.name }}", "content": "'$(cat /tmp/${{ github.event.repository.name  }}.md.base64)'"' \
+            -d '{"message": "Adding new member course record card for: ${{ github.event.repository.name }}", "content": "${{ env.record_card_string }}"}' \
             "https://api.github.com/repos/modernappsninjas/${{ github.event.sender.login }}/contents/content/english/course/${{ github.event.repository.name }}.md" \
             -o /tmp/record_card_post_response.json
           cat /tmp/record_card_post_response.json
-      - name: merge pull request #merge the file so the user gets the git commit on their record, but then we will delete and recreate the file to ensure file consistency
+      - name: merge_pull_request
         run: |
           curl -X PUT \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
@@ -128,35 +139,48 @@ jobs:
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/files" \
           -o /tmp/pr_file_list.json
+          cat /tmp/pr_file_list.json
       - name: set envar pr_filename as filename value
         run: |
-          cat /tmp/pr_file_list.json | jq -r '.filename' > /tmp/pr_filename
+          cat /tmp/pr_file_list.json | jq -r '.[0].filename'
+          cat /tmp/pr_file_list.json | jq -r '.[0].filename' > /tmp/pr_filename
           echo pr_filename=$(cat /tmp/pr_filename) >> $GITHUB_ENV
       - name: gather merged member registration file sha
         run: |
+          echo "pr_filename is: ${{ env.pr_filename }}"
           curl \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          "https://api.github.com/repos/${{ env.org_repo }}/contents/static/admin/userdata/registered_members/$(cat /tmp/pr_file_list.json | jq -r '.filename')" \
+          "https://api.github.com/repos/${{ env.org_repo }}/contents/${{ env.pr_filename }}" \
           -o /tmp/merge_sha.tmp
           cat /tmp/merge_sha.tmp
-          cat /tmp/merge_sha.tmp | jq -r '.sha' > /tmp/merge_sha
-          echo $(echo member_record_sha=$(cat /tmp/merge_sha)) >> GITHUB_ENV
-      - name: delete merged member registration file
+          cat /tmp/merge_sha.tmp | jq '.sha' > /tmp/merge_sha
+      # - name: set merged member record sha
+      #   run: |
+      #     cat /tmp/merge_sha
+      #     echo filemergesha="$(cat /tmp/merge_sha)"
+      #     echo $(echo filemergesha=$(cat /tmp/merge_sha)) >> GITHUB_ENV
+      - name: delete_merged_member_registration_file
         run: |
+          cat /tmp/merge_sha
+          echo 
+          filemergesha=$(cat /tmp/merge_sha)
+          echo "filemergesha is: $filemergesha"
           curl -X DELETE \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"message": "deleting member provided registration file to replace with valid autogenerated file","sha":"'$(cat /tmp/merge_sha)'"}' \
-          "https://api.github.com/repos/${{ env.org_repo }}/contents/static/admin/userdata/registered_members/$(cat /tmp/pr_file_list.json | jq -r '.filename')" \
+          -d '{"message": "deleting member provided registration file to replace with valid autogenerated file","sha":'$filemergesha'}' \
+          "https://api.github.com/repos/${{ env.org_repo }}/contents/${{ env.pr_filename }}" \
           -o /tmp/file_delete_response.json
-          cat /tmp/file_delete_response.json         
+          cat /tmp/file_delete_response.json
+          echo inprogress=$(echo "status: in-progress" | base64 -w 0) >> $GITHUB_ENV         
       - name: create new member registration file from validated github metadata
         run: |
+          echo "inprogress is: ${{ env.inprogress }}"
           curl -X PUT \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"message": "Updating Member Record File For '${{ github.event.sender.login }}'","content":"'$(echo "status: in-progress" | base64 -w 0)'"}' \
+          -d '{"message": "Updating Member Record File For '${{ github.event.sender.login }}'","content":"${{ env.inprogress }}"}' \
           "https://api.github.com/repos/${{ env.org_repo }}/contents/static/admin/userdata/registered_members/${{ github.event.sender.login }}.yml" \
           -o /tmp/member_repo_post_response.json
           cat /tmp/member_repo_post_response.json     

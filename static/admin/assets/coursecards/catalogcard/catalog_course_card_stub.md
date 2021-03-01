@@ -1,3 +1,5 @@
+  
+  
 ### About Course
 
 vSphere with Tanzu: application-focused management for streamlined development, agile operations, and accelerated innovation. Applications can be deployed using any combination of virtual machines, containers and Kubernetes.
