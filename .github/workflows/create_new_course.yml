@@ -486,34 +486,43 @@ jobs:
       - name: add new label for course to modernappsninja.github.io
         run: |
           curl -X POST \
-          -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"name":"'${{ env.course_repo_name }}'"}' \
+          -d '{"name":"${{ env.course_repo_name }}"}' \
           "https://api.github.com/repos/modernappsninja/modernappsninja.github.io/labels" \
           -o /tmp/add_course_label_response.json
           cat /tmp/add_course_label_response.json
       - name: curl modernappsninja/modernappsninja.github.io labels and save to file
         run: |
           curl \
-          -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
+          -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
           "https://api.github.com/repos/modernappsninja/modernappsninja.github.io/labels" \
           -o /tmp/ninja_label_list.json
+          cat /tmp/ninja_label_list.json
       - name: replicate ninja label list on new course repo
         run: |
+          IFS=$'\n'
           File="/tmp/ninja_label_list.json"
-          Lines=$(cat $File | jq -r '.name')
+          Loops=$(cat $File | jq -r '.name' | wc -l)
           Loopnum=0
-          for Line in $Lines
+          while [ $Loopnum -lt $Loops ]
           do
-            json=$(cat $File | jq -s '.['$Loopnum']' | tr -d '\n{}')
+            echo "this is loopnum: $Loopnum"
+            name=$(cat $File | jq '.['$Loopnum'].name')
+            echo "name is: $name"
+            description=$(cat $File | jq '.['$Loopnum'].description')
+            echo "description is $description"
+            color=$(cat $File | jq '.['$Loopnum'].color')
+            echo "color is $color"
             curl -X POST \
-            -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
-            -H "Accept: application/vnd.github.v3+json" \
-            -d "{$json}" \
-            "https://api.github.com/repos/modernappsninja/${{ env.course_repo_name }}/labels" \
-            >> /tmp/create_label_returns.json
-            Loopnum=$(($Loopnum+1))
+              -H "Authorization: token $GITHUB_OAUTH_TOKEN" \
+              -H "Accept: application/vnd.github.v3+json" \
+              "https://api.github.com/repos/modernappsninja/vSphereTanzu301_vt4163/labels" \
+              -d '{"name": '$name', "description": '$description', "color": '$color'}'
+            echo "the curl call for loopnum $Loopnum completed"
+            export Loopnum=$(($Loopnum+1))
+            echo the next loopnum is now set as: $Loopnum
           done
           cat /tmp/create_label_returns.json
       - name: create discussion message on course team page with details on new course assets
