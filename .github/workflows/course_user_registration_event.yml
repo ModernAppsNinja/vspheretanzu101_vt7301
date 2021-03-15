@@ -97,19 +97,26 @@ jobs:
           "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/memberrepocard/member_course_card_stub.md" \
           -o /tmp/member_course_card_stub.md
           cat /tmp/member_course_card_stub.md
-      - name: pull member course record template
+      - name: pull member course record top
         run: |
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-          "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/memberrepocard/member_course_record.yml" \
-          -o /tmp/member_course_record.yml
-          cat /tmp/member_course_record.yml
+          "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/memberrepocard/member_course_record_top.yml" \
+          -o /tmp/member_course_record_top.yml
+          cat /tmp/member_course_record_top.yml
+      - name: pull member course record bottom
+        run: |
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://raw.githubusercontent.com/${{ env.org_repo }}/main/static/admin/assets/coursecards/memberrepocard/member_course_record_bottom.yml" \
+          -o /tmp/member_course_record_bottom.yml
+          cat /tmp/member_course_record_bottom.yml
       - name: create member course record card
         run: |
           cd ${{ env.source_repo_name }}
           sed -i '/^draft:/c\draft: false' /tmp/course_meta.yml
           cat /tmp/course_meta.yml > /tmp/${{ github.event.repository.name }}.md
           cat /tmp/member_course_card_stub.md >> /tmp/${{ github.event.repository.name }}.md
-          cat /tmp/member_course_record.yml >> /tmp/${{ github.event.repository.name }}.md
+          cat /tmp/member_course_record_top.yml >> /tmp/${{ github.event.repository.name }}.md
+          cat /tmp/member_course_record_bottom.yml >> /tmp/${{ github.event.repository.name }}.md
           cat /tmp/${{ github.event.repository.name }}.md
           cat /tmp/${{ github.event.repository.name }}.md | base64 -w 0 > /tmp/${{ github.event.repository.name }}.md.base64
           echo record_card_string=$(cat /tmp/${{ github.event.repository.name }}.md.base64)

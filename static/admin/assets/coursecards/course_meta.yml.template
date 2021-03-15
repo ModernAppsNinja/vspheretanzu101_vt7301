@@ -25,4 +25,4 @@ content_id: $content_id
 course_short_title: $course_short_title
 course_navbar_title: $course_navbar_title
 course_repo_name: $course_repo_name
----
+---  
