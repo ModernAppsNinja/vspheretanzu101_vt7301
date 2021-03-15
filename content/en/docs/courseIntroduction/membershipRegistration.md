@@ -4,15 +4,25 @@ date: 2020-10-12T18:34:25-07:00
 weight: 1013
 
 ---
+
+- [Requirements for tests and course completion certificates](#requirements-for-tests-and-course-completion-certificates)
+  - [Join the ModernApps Ninja Community!](#join-the-modernapps-ninja-community)
+  - [Register for this course](#register-for-this-course)
+    - [Step 1 - Open the new course registration document link](#step-1---open-the-new-course-registration-document-link)
+    - [Step 2 - Name your file](#step-2---name-your-file)
+    - [Step 3 - Add a line to your file](#step-3---add-a-line-to-your-file)
+    - [Step 4 - Submit your registration document](#step-4---submit-your-registration-document)
+
+
 ## Requirements for tests and course completion certificates
 
-ModernApps Ninja learning content is free and open to anyone to view, however to take tests and recieve certificates of completion for courses, you must sign up for a free community membership, **and** register for this course, per the instructions below. 
+ModernApps Ninja learning content is free and open to anyone to view, however to take tests and receive certificates of completion for courses, you must sign up for a free community membership, **and** register for this course, per the instructions below. 
 
 ### Join the ModernApps Ninja Community!
 
 In addition to unlocking the ability to take tests and recieve course completion certificates, joining the ModernApps Ninja Community has a number of other benefits, and is a completely free program. 
 
-[Please click here to learn more about member benefits and to join the community!](https://modernapps.ninja/about/membership.html)
+[Please click here to learn more about member benefits and to join the community!](https://modernapps.ninja/about/membership)
 
 ### Register for this course
 
@@ -32,7 +42,7 @@ The following link will direct your browser to a github web-based document edito
 
 Please right click the following link and select the option to open it in a new browser tab, so you can keep this instruction page open in the current tab to guide you through the process. 
 
-[Right Click Here and select the option to open link in new tab to view the course registration form](https://github.com/modernappsninja/course_repo_template_ct8279/new/main/static/admin/userdata/registered_members)
+[Right Click Here and select the option to open link in new tab](https://github.com/ModernAppsNinja/vSphereTanzu301_vt4163/tree/main/static/admin/userdata/registered_members) and click on `Add File > Create new file`
 
 #### Step 2 - Name your file
 
@@ -40,7 +50,7 @@ Note the page displays a message that `You’re making changes in a project you 
 
 The pull request process works by submitting a copy of your new or updated file to the repository, which will only be applied to the course repository if a course administrator approves the request. Because you do not have write access to the repository, github will create a special copy called a `fork` of the course repository within your github account with your new or updated files, and use your copy to save the updates you're submitting to the official course repository as shown in the following steps.
 
-In your browser tab to the new registration document, above the document editor in the file name field, type in the name of the file in the format `your_lowercase_github_username.yml`, replacing the value your_lowercase_github_username with the username for your github account in lowercase letters. 
+In your browser tab to the new registration document, above the document editor in the file name field, type in the name of the file in the format `your_github_username.yml`, replacing the value **your_github_username** with the username for your github account. 
 
 The following screenshot shows an example of this step using the github username `Oni-no-Hanzo`
 
@@ -58,7 +68,7 @@ On line 1 in the document editor, type `status: in-progress` as shown in the fol
 
 Scroll to the bottom of the registration document page and click `Propose New File` as shown in the following image:
 
-![Propose New File Screenshot](https://modernapps.ninja/course_repo_template_ct8279/admin/assets/images/propose_new_file.png)
+![Propose New File Screenshot](https://github.com/ModernAppsNinja/course_repo_template_ct8279/new/main/static/admin/userdata/registered_members)
 
 After you click `Propose New File`, your browser will be redirected to the `Comparing Changes` page with all the configuration all setup so all you sould need to do is click `Create Pull Request` --- but before you click, please review the other details shown on the comparing changes and observe that the file you created and the lines added are shown, so you can easily review and verify your proposed changes before submitting.
 
