@@ -42,7 +42,7 @@ The following link will direct your browser to a github web-based document edito
 
 Please right click the following link and select the option to open it in a new browser tab, so you can keep this instruction page open in the current tab to guide you through the process. 
 
-[Right Click Here and select the option to open link in new tab](https://github.com/ModernAppsNinja/vSphereTanzu301_vt4163/tree/main/static/admin/userdata/registered_members) and click on `Add File > Create new file`
+[Right Click Here and select the option to open link in new tab](https://github.com/ModernAppsNinja/vspheretanzu101_vt7301/tree/main/static/admin/userdata/registered_members) and click on `Add File > Create new file`
 
 #### Step 2 - Name your file
 
@@ -68,7 +68,7 @@ On line 1 in the document editor, type `status: in-progress` as shown in the fol
 
 Scroll to the bottom of the registration document page and click `Propose New File` as shown in the following image:
 
-![Propose New File Screenshot](https://github.com/ModernAppsNinja/course_repo_template_ct8279/new/main/static/admin/userdata/registered_members)
+![Propose New File Screenshot](https://github.com/ModernAppsNinja/course_repo_template_ct8279/blob/main/static/admin/assets/images/propose_changes.png)
 
 After you click `Propose New File`, your browser will be redirected to the `Comparing Changes` page with all the configuration all setup so all you sould need to do is click `Create Pull Request` --- but before you click, please review the other details shown on the comparing changes and observe that the file you created and the lines added are shown, so you can easily review and verify your proposed changes before submitting.
 

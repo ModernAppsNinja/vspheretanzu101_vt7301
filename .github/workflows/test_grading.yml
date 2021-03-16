@@ -385,7 +385,7 @@ jobs:
           -o /tmp/member_course_card_post_response.json
           cat /tmp/member_course_card_post_response.json
           reponame=${{ github.event.repository.name }}
-          echo lorepo=$(echo ${{ github.event.repository.name }}) >> $GITHUB_ENV
+          echo lorepo=$(echo ${reponame,,}) >> $GITHUB_ENV
       - name: post message to pr
         run: |
           curl -X POST \
