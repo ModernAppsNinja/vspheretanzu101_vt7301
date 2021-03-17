@@ -44,39 +44,64 @@ Please right click the following link to the test answer response sheet and sele
 
 ### Section 1 Test Questions
 
-#### **Question1:** vSphere with Tanzu is the fastest way to get started with Kubernetes workloads. and ...? <!-- omit in toc -->
+#### **Question1:** Industry Challenges with Cloud Infrastructure include ... <!-- omit in toc -->
 
 **Please select the best response from the following to complete the statement in Question1:**
 
 ```yml
 Answers:
-  a: requires NSX-T to be installed.
-  b: is designed to work with standard vSphere networking which allows you to bring your own networking.
-  c: allows you to avoid connecting any networks.
+  a: App Modernization
+  b: Cloud Operating Model 
+  c: Artificial Intelligence and Machine Learning 
+  d: Data Privacy and Security Policies 
+  e: All of the above
 ```
 
-#### **Question2:** In the setup of vSphere with Tanzu you will need at least two separate, routable subnets configured. One subnet will be for Management Networking. This is where vCenter, ESXi, the Supervisor Cluster and the Load Balancer will live. The other subnet will be used for Workload Networking. This is where your virtual IP’s and TKG clusters will live. <!-- omit in toc -->
+#### **Question2:** vSphere with Tanzu allows you to bring your own networking and storage. And, ...?  <!-- omit in toc -->
 
-**Based on the scenario above, please select which 2 of the following statements are accurate:**
+**Please select the best response from the following to complete the statement:**
 
 ```yml
 Answers:
-  a: The Management and Workload Networks cannot be on the same subnet. They require L2 isolation.
-  b: The Management and Workload Networks can be on the same subnet. They do not require L2 isolation.
-  c: Avoid using VLANs to isolate the Management and Workload Network
-  d: VMware recommends using VLANs to isolate the Management and Workload Network
+  a: handles full IaaS stack at scale infrastructure and lifecycle management.
+  b: is the fastest way to get started with Kubernetes workloads.
+  c: is the best way to run Kubernetes at scale.
 ```
 
-#### **Question3:** Which of the following items can be used to check and validate the base networking configuration: <!-- omit in toc -->
+#### **Question3:** VCF with Tanzu ...? <!-- omit in toc -->
 
-**Select 3 of the following statements:**
+**Select 3 of the following choices that could accurately complete the statement above:**
 
 ```yml
 Answers:
-  a: basic networking - management network can reach internet
-  b: basic networking - management network can reach ESXi hosts
-  c: vmotion is working
-  d: basic networking between management network and workload networks is working so that you can ping between the networks
+  a: has advanced automation, troubleshooting, and observability of networking storage, and integrated L4 and L7 load balancing.
+  b: is the fastest way to get started with Kubernetes workloads.
+  c: provides full stack IaaS stack at scale.
+  d: is the best way to run Kubernetes workloads at scale.
 ```
+
+[x] has advanced automation, troubleshooting, and observability of networking storage, and integrated L4 and L7 load balancing.
+[ ] is the fastest way to get started with Kubernetes workloads.
+[x] provides full stack IaaS stack at scale.
+[x] is the best way to run Kubernetes workloads at scale.
+
+#### **Question4:** Features and benefits of vSphere with Tanzu include: <!-- omit in toc -->
+
+**Select 3 of the following choices that best complete the statement above:**
+
+```yml
+Answers:
+  a: Manage cost in the cloud
+  b: Deliver Developer Ready Infrastructure
+  c: Align DevOps and IT
+  d: Simplify IT Operations
+```
+
+Features and benefits of vSphere with Tanzu include: ||Select all that apply. <<
+
+[x] Deliver Developer Ready Infrastructure
+[ ] Manage cost in the cloud
+[x] Align DevOps and IT
+[x] Simplify IT Operations
 
 ##### This concludes the section 1 test. Please use the navigation bar to proceed to the next page.
