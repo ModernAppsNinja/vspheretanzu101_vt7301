@@ -11,8 +11,8 @@ Ninja tests use devops tools and processes so the testing system itself provides
 - [Instructions](#instructions)
   - [Full Test Instructions](#full-test-instructions)
   - [Test Answer Response Sheet](#test-answer-response-sheet)
-  - [Episode 1 Test Questions](#episode-1-test-questions)
-      - [This concludes the episode 1 test. Please use the navigation bar to proceed to the next page.](#this-concludes-the-episode-1-test-please-use-the-navigation-bar-to-proceed-to-the-next-page)
+  - [Section 1 Test Questions](#section-1-test-questions)
+      - [This concludes the section 1 test. Please use the navigation bar to proceed to the next page.](#this-concludes-the-section-1-test-please-use-the-navigation-bar-to-proceed-to-the-next-page)
 
 ## Instructions
 
@@ -26,7 +26,7 @@ All questions will provide a list of possible answers. Each possible answer is r
 
 The Answer sheet will open in Github's web-based editor, similar to the image shown below:
 
-![Example Test Response Sheet](/vSphereTanzu301_vt4163/admin/assets/images/blank_test_screen_example.png)  
+![Example Test Response Sheet](/vspheretanzu101_vt7301/admin/assets/images/blank_test_screen_example.png)  
 
 After you fill in your answer sheet, you will submit  your responses as a git [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) following the instructions provided below, which will trigger a workflow that will grade your responses and provide your test grading sheet. 
 
@@ -40,9 +40,9 @@ It is important that you follow the instructions carefully to ensure the automat
 
 Please right click the following link to the test answer response sheet and select to open it in a new tab. The questions for this test will be provided below in this page, but you will need to enter your responses in the answer response sheet. 
 
-[test1 Answer Response Sheet](https://github.com/modernappsninja/vSphereTanzu301_vt4163/edit/main/static/admin/userdata/tests/test1.yml)  
+[test1 Answer Response Sheet](https://github.com/modernappsninja/vspheretanzu101_vt7301/edit/main/static/admin/userdata/tests/test1.yml)  
 
-### Episode 1 Test Questions
+### Section 1 Test Questions
 
 #### **Question1:** vSphere with Tanzu is the fastest way to get started with Kubernetes workloads. and ...? <!-- omit in toc -->
 
@@ -79,4 +79,4 @@ Answers:
   d: basic networking between management network and workload networks is working so that you can ping between the networks
 ```
 
-##### This concludes the episode 1 test. Please use the navigation bar to proceed to the next page.
+##### This concludes the section 1 test. Please use the navigation bar to proceed to the next page.

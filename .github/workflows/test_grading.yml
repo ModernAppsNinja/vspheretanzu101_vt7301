@@ -149,7 +149,7 @@ jobs:
       - name: curl the answer key
         run: |
           curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
-            "https://raw.githubusercontent.com/ModernAppsNinja/admin-private/main/appdata/courses/vSphereTanzu301_vt4163/answer_strings/${{ env.test_name }}.string" \
+            "https://raw.githubusercontent.com/ModernAppsNinja/admin-private/main/appdata/courses/${{github.event.repository.name }}/answer_strings/${{ env.test_name }}.string" \
             -o /tmp/key.${{ env.test_name }}.raw
           cat /tmp/key.${{ env.test_name }}.raw
       # Below step is scaffolding for a test metadata file concept to enhance test customizability, but is not yet implemented
