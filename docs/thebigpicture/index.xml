@@ -6,9 +6,9 @@
 &lt;ul>
 &lt;li>&lt;a href="#full-test-instructions">Full Test Instructions&lt;/a>&lt;/li>
 &lt;li>&lt;a href="#test-answer-response-sheet">Test Answer Response Sheet&lt;/a>&lt;/li>
-&lt;li>&lt;a href="#episode-1-test-questions">Episode 1 Test Questions&lt;/a>
+&lt;li>&lt;a href="#section-1-test-questions">Section 1 Test Questions&lt;/a>
 &lt;ul>
-&lt;li>&lt;a href="#this-concludes-the-episode-1-test-please-use-the-navigation-bar-to-proceed-to-the-next-page">This concludes the episode 1 test. Please use the navigation bar to proceed to the next page.&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#this-concludes-the-section-1-test-please-use-the-navigation-bar-to-proceed-to-the-next-page">This concludes the section 1 test. Please use the navigation bar to proceed to the next page.&lt;/a>&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
@@ -20,15 +20,15 @@
 &lt;p>Every question in this test is titled &amp;ldquo;Question&amp;rdquo; followed by its order, for example Question1, Question2 etc&amp;hellip;&lt;/p>
 &lt;p>All questions will provide a list of possible answers. Each possible answer is represented by a lowercase letter, the first response is option &amp;ldquo;a&amp;rdquo;, the second is option &amp;ldquo;b&amp;rdquo; and so on, as shown in the example questions below.&lt;/p>
 &lt;p>The Answer sheet will open in Github&amp;rsquo;s web-based editor, similar to the image shown below:&lt;/p>
-&lt;p>&lt;img src="https://modernappsninja.github.io/vspheretanzu101_vt7301/vSphereTanzu301_vt4163/admin/assets/images/blank_test_screen_example.png" alt="Example Test Response Sheet">&lt;/p>
+&lt;p>&lt;img src="https://modernappsninja.github.io/vspheretanzu101_vt7301/vspheretanzu101_vt7301/admin/assets/images/blank_test_screen_example.png" alt="Example Test Response Sheet">&lt;/p>
 &lt;p>After you fill in your answer sheet, you will submit your responses as a git &lt;a href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests">pull request&lt;/a> following the instructions provided below, which will trigger a workflow that will grade your responses and provide your test grading sheet.&lt;/p>
 &lt;h3 id="full-test-instructions">Full Test Instructions&lt;/h3>
 &lt;p>If this is the first test you have taken, or if you have an questions at all about how to propely complete the test answer sheet or the test grading service, please review the full &lt;a href="https://modernapps.ninja/course_repo_template_ct8279/docs/reference/testinstructions/">How to Take a Test Instructions&lt;/a>.&lt;/p>
 &lt;p>It is important that you follow the instructions carefully to ensure the automated grading process completes successfully.&lt;/p>
 &lt;h3 id="test-answer-response-sheet">Test Answer Response Sheet&lt;/h3>
 &lt;p>Please right click the following link to the test answer response sheet and select to open it in a new tab. The questions for this test will be provided below in this page, but you will need to enter your responses in the answer response sheet.&lt;/p>
-&lt;p>&lt;a href="https://github.com/modernappsninja/vSphereTanzu301_vt4163/edit/main/static/admin/userdata/tests/test1.yml">test1 Answer Response Sheet&lt;/a>&lt;/p>
-&lt;h3 id="episode-1-test-questions">Episode 1 Test Questions&lt;/h3>
+&lt;p>&lt;a href="https://github.com/modernappsninja/vspheretanzu101_vt7301/edit/main/static/admin/userdata/tests/test1.yml">test1 Answer Response Sheet&lt;/a>&lt;/p>
+&lt;h3 id="section-1-test-questions">Section 1 Test Questions&lt;/h3>
 &lt;h4 id="question1-vsphere-with-tanzu-is-the-fastest-way-to-get-started-with-kubernetes-workloads-and-----omit-in-toc---">&lt;strong>Question1:&lt;/strong> vSphere with Tanzu is the fastest way to get started with Kubernetes workloads. and &amp;hellip;? &lt;!-- omit in toc -->&lt;/h4>
 &lt;p>&lt;strong>Please select the best response from the following to complete the statement in Question1:&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#204a87;font-weight:bold">Answers&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
@@ -49,7 +49,7 @@
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">b&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">basic networking - management network can reach ESXi hosts&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">c&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">vmotion is working&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">d&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">basic networking between management network and workload networks is working so that you can ping between the networks&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="this-concludes-the-episode-1-test-please-use-the-navigation-bar-to-proceed-to-the-next-page">This concludes the episode 1 test. Please use the navigation bar to proceed to the next page.&lt;/h5></description></item><item><title>Docs: Introducing VSphere With Tanzu</title><link>https://modernappsninja.github.io/vspheretanzu101_vt7301/docs/thebigpicture/introducingvspherewithtanzu/</link><pubDate>Fri, 09 Oct 2020 03:11:21 -0700</pubDate><guid>https://modernappsninja.github.io/vspheretanzu101_vt7301/docs/thebigpicture/introducingvspherewithtanzu/</guid><description>
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="this-concludes-the-section-1-test-please-use-the-navigation-bar-to-proceed-to-the-next-page">This concludes the section 1 test. Please use the navigation bar to proceed to the next page.&lt;/h5></description></item><item><title>Docs: Introducing VSphere With Tanzu</title><link>https://modernappsninja.github.io/vspheretanzu101_vt7301/docs/thebigpicture/introducingvspherewithtanzu/</link><pubDate>Fri, 09 Oct 2020 03:11:21 -0700</pubDate><guid>https://modernappsninja.github.io/vspheretanzu101_vt7301/docs/thebigpicture/introducingvspherewithtanzu/</guid><description>
 &lt;p>*Please Note - vSphere with Kubernetes has been renamed to vSphere with Tanzu.
 &lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
 &lt;iframe src="https://www.youtube.com/embed/VtEs3X5pYlE" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
