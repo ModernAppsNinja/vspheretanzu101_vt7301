@@ -322,7 +322,7 @@ jobs:
         if: env.passing_grade == 'true'
         run: |
           preferredemailaddress=$(yq e '.preferredEmailAddress' /tmp/member_record.yml)
-          badgeclass_entity_id=f_fV8gZmSO6BqIcADjZ0vQ
+          badgeclass_entity_id=L2Y05DpQTjWmZWt5xd9eGA
           reponame=${{ github.event.repository.name }}
           lorepo=$(echo ${reponame,,})
           echo "lorepo is: ${lorepo}"
