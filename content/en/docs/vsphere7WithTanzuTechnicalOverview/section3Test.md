@@ -1,5 +1,5 @@
 ---
-title: "Section 2 Test"
+title: "Section 3 Test"
 date: 2020-10-09T03:15:26-07:00
 weight: 2090
 ---
@@ -11,8 +11,8 @@ Ninja tests use devops tools and processes so the testing system itself provides
 - [Instructions](#instructions)
   - [Full Test Instructions](#full-test-instructions)
   - [Test Answer Response Sheet](#test-answer-response-sheet)
-  - [Section 2 Test Questions](#section-2-test-questions)
-      - [This concludes the section 2 test. Please use the navigation bar to proceed to the next page.](#this-concludes-the-section-2-test-please-use-the-navigation-bar-to-proceed-to-the-next-page)
+  - [Section 3 Test Questions](#section-3-test-questions)
+      - [This concludes the section 3 test. Please use the navigation bar to proceed to the next page.](#this-concludes-the-section-3-test-please-use-the-navigation-bar-to-proceed-to-the-next-page)
 
 ## Instructions
 
@@ -40,60 +40,73 @@ It is important that you follow the instructions carefully to ensure the automat
 
 Please right click the following link to the test answer response sheet and select to open it in a new tab. The questions for this test will be provided below in this page, but you will need to enter your responses in the answer response sheet. 
 
-[test2 Answer Response Sheet](https://github.com/modernappsninja/vspheretanzu101_vt7301/edit/main/static/admin/userdata/tests/test2.yml)  
+[test3 Answer Response Sheet](https://github.com/modernappsninja/vspheretanzu101_vt7301/edit/main/static/admin/userdata/tests/test3.yml)  
 
-### Section 2 Test Questions
+### Section 3 Test Questions
 
-#### **Question1:** Industry Challenges with Cloud Infrastructure include ... <!-- omit in toc -->
-
-**Please select the best response from the following to complete the statement in Question1:**
+#### **Question1:** Please select the most correct statement from the options below <!-- omit in toc -->
 
 ```yml
 Answers:
-  a: 
-  b: 
-  c:  
-  d:  
-  e: 
+  a: Use the Tanzu Kubernetes Grid Installer to install TKG on vSphere 7
+  b: TKG Service is embedded in vSphere 7 with Kubernetes
+
 ```
 
-#### **Question2:** vSphere with Tanzu allows you to bring your own networking and storage. And, ...?  <!-- omit in toc -->
+#### **Question2:** Which of the following commands is used to create a Tanzu Kubernetes Cluster using the TKG CLI  <!-- omit in toc -->
 
-**Please select the best response from the following to complete the statement:**
+**Please select the best response:**
 
 ```yml
 Answers:
-  a: 
-  b: 
-  c:  
-  d:  
-  e: 
+  a: tkgi create-cluster
+  b: tkg create cluster
+  c: tkg cluster install
+  d: clusterctl init
 ```
 
-#### **Question3:** VCF with Tanzu ...? <!-- omit in toc -->
+#### **Question3:** For Tanzu Kubernetes Grid service on vSphere 7, the TKG Management Services run on the ________ Cluster <!-- omit in toc -->
 
-**Select 3 of the following choices that could accurately complete the statement above:**
+**Please select the best response to fill in the blank word in the statement above:**
 
 ```yml
 Answers:
-  a: 
-  b: 
-  c:  
-  d:  
-  e: 
+  a: Workload Cluster
+  b: vSphere Cluster
+  c: Workload Platform Service Cluster
+  d: Supervisor Cluster
 ```
 
-#### **Question4:** Features and benefits of vSphere with Tanzu include: <!-- omit in toc -->
+#### **Question4:** Tanzu Kubernetes Grid uses the _____ Open Source Software for Data Protection to backup and restore Kubernetes objects. <!-- omit in toc -->
 
-**Select 3 of the following choices that best complete the statement above:**
+**Please select the best response to fill in the blank word in the statement above:**
 
 ```yml
 Answers:
-  a: 
-  b: 
-  c:  
-  d:  
-  e: 
+  a: Sonobuoy
+  b: Velero
+  c: Contour
 ```
 
-##### This concludes the section 2 test. Please use the navigation bar to proceed to the next page.
+Please select the best response to fill in the blank word in the following statement:
+
+>>Tanzu Kubernetes Grid uses the _____ Open Source Software for Data Protection to backup and restore Kubernetes objects <<
+
+( ) Sonobuoy
+(x) Velero
+( ) Contour
+
+
+#### **Question5:** _________ ______ is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management. <!-- omit in toc -->
+
+**Please select the best response to fill in the blank word in the statement above:**
+
+```yml
+Answers:
+  a: CloudFoundry BOSH
+  b: Cluster API
+  c: Project Pacific
+  d: Cloud Config
+```
+
+##### This concludes the section 3 test. Please use the navigation bar to proceed to the next page.
