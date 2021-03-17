@@ -80,11 +80,6 @@ Answers:
   d: is the best way to run Kubernetes workloads at scale.
 ```
 
-[x] has advanced automation, troubleshooting, and observability of networking storage, and integrated L4 and L7 load balancing.
-[ ] is the fastest way to get started with Kubernetes workloads.
-[x] provides full stack IaaS stack at scale.
-[x] is the best way to run Kubernetes workloads at scale.
-
 #### **Question4:** Features and benefits of vSphere with Tanzu include: <!-- omit in toc -->
 
 **Select 3 of the following choices that best complete the statement above:**
@@ -96,12 +91,5 @@ Answers:
   c: Align DevOps and IT
   d: Simplify IT Operations
 ```
-
-Features and benefits of vSphere with Tanzu include: ||Select all that apply. <<
-
-[x] Deliver Developer Ready Infrastructure
-[ ] Manage cost in the cloud
-[x] Align DevOps and IT
-[x] Simplify IT Operations
 
 ##### This concludes the section 1 test. Please use the navigation bar to proceed to the next page.

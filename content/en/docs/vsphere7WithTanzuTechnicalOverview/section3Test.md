@@ -1,7 +1,7 @@
 ---
-title: "Episode 3 Test"
+title: "Section 2 Test"
 date: 2020-10-09T03:15:26-07:00
-weight: 4090
+weight: 2090
 ---
 
 All Modernapps Ninja learning content is publicly accessible and available openly, however a free membership is required to take tests and recieve a certificate of completion for the course. You must first [join the community](https://modernapps.ninja/about/membership/) and register for this course per the instructions in the course introduction section before attempting to submit a test.
@@ -11,8 +11,8 @@ Ninja tests use devops tools and processes so the testing system itself provides
 - [Instructions](#instructions)
   - [Full Test Instructions](#full-test-instructions)
   - [Test Answer Response Sheet](#test-answer-response-sheet)
-  - [Episode 3 Test Questions](#episode-3-test-questions)
-      - [This concludes the episode 3 test. Please use the navigation bar to proceed to the next page.](#this-concludes-the-episode-3-test-please-use-the-navigation-bar-to-proceed-to-the-next-page)
+  - [Section 2 Test Questions](#section-2-test-questions)
+      - [This concludes the section 2 test. Please use the navigation bar to proceed to the next page.](#this-concludes-the-section-2-test-please-use-the-navigation-bar-to-proceed-to-the-next-page)
 
 ## Instructions
 
@@ -26,9 +26,9 @@ All questions will provide a list of possible answers. Each possible answer is r
 
 The Answer sheet will open in Github's web-based editor, similar to the image shown below:
 
-![Example Test Response Sheet](/vSphereTanzu301_vt4163/admin/assets/images/blank_test_screen_example.png)  
+![Example Test Response Sheet](/vspheretanzu101_vt7301/admin/assets/images/blank_test_screen_example.png)  
 
-After you fill in your answer sheet, you will submit your responses as a git [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) following the instructions provided below, which will trigger a workflow that will grade your responses and provide your test grading sheet. 
+After you fill in your answer sheet, you will submit  your responses as a git [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) following the instructions provided below, which will trigger a workflow that will grade your responses and provide your test grading sheet. 
 
 ### Full Test Instructions
 
@@ -40,43 +40,60 @@ It is important that you follow the instructions carefully to ensure the automat
 
 Please right click the following link to the test answer response sheet and select to open it in a new tab. The questions for this test will be provided below in this page, but you will need to enter your responses in the answer response sheet. 
 
-[test3 Answer Response Sheet](https://github.com/modernappsninja/vSphereTanzu301_vt4163/edit/main/static/admin/userdata/tests/test3.yml)  
+[test2 Answer Response Sheet](https://github.com/modernappsninja/vspheretanzu101_vt7301/edit/main/static/admin/userdata/tests/test2.yml)  
 
-### Episode 3 Test Questions
+### Section 2 Test Questions
 
-#### **Question1:** in a vSphere with Tanzu implementation that uses vDS and HAproxy, which of the following IP ranges should be prepared for the supervisor cluster networking topology?  <!-- omit in toc -->
+#### **Question1:** Industry Challenges with Cloud Infrastructure include ... <!-- omit in toc -->
 
-**Please select the best 2 responses from the following:**
-
-```yml
-Answers:
-  a: A range for allocating virtual IPs for HAProxy. The IP range that you configure for the virtual servers of HAProxy are reserved by the load balancer appliance. 
-  b: DHCP IP ranges
-  c: Configure a gateway within the HAProxy virtual IP range, so all routes to that gateway will succeed.
-  d: An IP range for the nodes of the Supervisor Cluster and Tanzu Kubernetes clusters.
-```
-
-#### **Question2:** True or False - Before installing Workload Management (the user interface designation for running Kubernetes inside vSphere), you have to setup HA-Proxy, a virtual appliance for provisioning load-balancers. <!-- omit in toc -->
-
-**Important: On your answer sheet, please use the letter a for true, and the letter b for false. DO NOT type in the words true or false on the answer sheet as the grading service only processes single letter responses**
+**Please select the best response from the following to complete the statement in Question1:**
 
 ```yml
 Answers:
-  a: true
-  b: false
+  a: 
+  b: 
+  c:  
+  d:  
+  e: 
 ```
 
-#### **Question3:** Kubernetes cluster configuration includes providing a CIDR range for Kubernetes services and a CIDR range for pods. || Select all that apply.: <!-- omit in toc -->
+#### **Question2:** vSphere with Tanzu allows you to bring your own networking and storage. And, ...?  <!-- omit in toc -->
 
-**Select 2 of the following statements:**
+**Please select the best response from the following to complete the statement:**
 
 ```yml
 Answers:
-  a: CIDR Range == IP Range. You can pick any IP range you want but it must not conflict with anything else on the management or workload networks.
-  b: IP ranges are not needed for the supervisor cluster
-  c: a /20 is required
-  d: default for services is a /24 as supervisor cluster doesn't use a lot ... but this can be changed.
+  a: 
+  b: 
+  c:  
+  d:  
+  e: 
 ```
 
+#### **Question3:** VCF with Tanzu ...? <!-- omit in toc -->
 
-##### This concludes the episode 3 test. Please use the navigation bar to proceed to the next page.
+**Select 3 of the following choices that could accurately complete the statement above:**
+
+```yml
+Answers:
+  a: 
+  b: 
+  c:  
+  d:  
+  e: 
+```
+
+#### **Question4:** Features and benefits of vSphere with Tanzu include: <!-- omit in toc -->
+
+**Select 3 of the following choices that best complete the statement above:**
+
+```yml
+Answers:
+  a: 
+  b: 
+  c:  
+  d:  
+  e: 
+```
+
+##### This concludes the section 2 test. Please use the navigation bar to proceed to the next page.
