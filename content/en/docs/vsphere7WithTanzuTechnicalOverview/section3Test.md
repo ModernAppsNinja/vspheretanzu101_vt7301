@@ -88,15 +88,6 @@ Answers:
   c: Contour
 ```
 
-Please select the best response to fill in the blank word in the following statement:
-
->>Tanzu Kubernetes Grid uses the _____ Open Source Software for Data Protection to backup and restore Kubernetes objects <<
-
-( ) Sonobuoy
-(x) Velero
-( ) Contour
-
-
 #### **Question5:** _________ ______ is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management. <!-- omit in toc -->
 
 **Please select the best response to fill in the blank word in the statement above:**
