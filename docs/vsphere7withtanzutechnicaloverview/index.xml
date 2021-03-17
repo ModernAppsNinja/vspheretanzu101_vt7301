@@ -54,16 +54,7 @@
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">a&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Sonobuoy&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">b&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Velero&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">c&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Contour&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
-&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Please select the best response to fill in the blank word in the following statement:&lt;/p>
-&lt;blockquote>
-&lt;blockquote>
-&lt;p>Tanzu Kubernetes Grid uses the _____ Open Source Software for Data Protection to backup and restore Kubernetes objects &amp;laquo;&lt;/p>
-&lt;/blockquote>
-&lt;/blockquote>
-&lt;p>( ) Sonobuoy
-(x) Velero
-( ) Contour&lt;/p>
-&lt;h4 id="question5-_________-______-is-a-kubernetes-project-to-bring-declarative-kubernetes-style-apis-to-cluster-creation-configuration-and-management----omit-in-toc---">&lt;strong>Question5:&lt;/strong> _________ ______ is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management. &lt;!-- omit in toc -->&lt;/h4>
+&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="question5-_________-______-is-a-kubernetes-project-to-bring-declarative-kubernetes-style-apis-to-cluster-creation-configuration-and-management----omit-in-toc---">&lt;strong>Question5:&lt;/strong> _________ ______ is a Kubernetes project to bring declarative, Kubernetes-style APIs to cluster creation, configuration, and management. &lt;!-- omit in toc -->&lt;/h4>
 &lt;p>&lt;strong>Please select the best response to fill in the blank word in the statement above:&lt;/strong>&lt;/p>
 &lt;div class="highlight">&lt;pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-yml" data-lang="yml">&lt;span style="color:#204a87;font-weight:bold">Answers&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
 &lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#204a87;font-weight:bold">a&lt;/span>&lt;span style="color:#000;font-weight:bold">:&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline"> &lt;/span>&lt;span style="color:#000">Cluster API&lt;/span>&lt;span style="color:#f8f8f8;text-decoration:underline">
