@@ -60,8 +60,8 @@ Answers:
 ```yml
 Answers:
   a: tkgi create-cluster
-  b: tkg create cluster
-  c: tkg cluster install
+  b: tkg cluster install
+  c: tkg create cluster
   d: clusterctl init
 ```
 
@@ -103,8 +103,8 @@ Please select the best response to fill in the blank word in the following state
 
 ```yml
 Answers:
-  a: CloudFoundry BOSH
-  b: Cluster API
+  a: Cluster API
+  b: CloudFoundry BOSH
   c: Project Pacific
   d: Cloud Config
 ```
