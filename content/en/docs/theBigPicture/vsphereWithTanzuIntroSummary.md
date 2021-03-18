@@ -7,4 +7,4 @@ weight: 2145
 
 You have reached the end of this section.
 
-#### [Please Click Here to Proceed with the Introduction Section](../tanzukubernetesgridoverview/)
+#### [Please Click Here to Proceed with the Introduction Section](../../tanzukubernetesgridoverview/)
