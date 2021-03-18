@@ -7,7 +7,7 @@ weight: 6015
 If you have completed all tests in the course and recieved over 70% correct responses, you can make an automated request to recieve a certificate of completion for this course. 
 
 To request your certificate of completion:
-1. In a seperate browser tab navigate to: https://github.com/ModernAppsNinja/vSphereTanzu301_vt4163/tree/main/static/admin/userdata/certs_awarded
+1. In a seperate browser tab navigate to: [https://github.com/ModernAppsNinja/vspheretanzu101_vt7301/tree/main/static/admin/userdata/certs_awarded](https://github.com/ModernAppsNinja/vspheretanzu101_vt7301/tree/main/static/admin/userdata/certs_awarded)
 2. Click on the `Add file` button to add a new file
 3. Name the file using your own github username in the format `yourgithubusername.yml`
 4. In the body of the file type: `Status: Completed`
