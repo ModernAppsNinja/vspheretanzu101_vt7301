@@ -6,4 +6,4 @@ weight: 3035
 ---
 You have reached the end of this section.
 
-#### [Please Click Here to Proceed with the Introduction Section](../vsphere7withtanzuoverview/)
+#### [Please Click Here to Proceed with the Introduction Section](../../vsphere7withtanzutechnicaloverview/)
