@@ -43,6 +43,9 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
+&lt;div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+&lt;iframe src="https://www.youtube.com/embed/J_nV5YPypqs" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen title="YouTube Video">&lt;/iframe>
+&lt;/div>
 &lt;h2 id="instructions">Instructions&lt;/h2>
 &lt;p>This test uses automated grading, you must follow the instructions exactly to ensure automated grading will complete successfully.&lt;/p>
 &lt;p>To complete the test you must review the questions on this page, and fill in your answers on a seperate answer sheet provided below. We recommend opening the answer sheet for the test in a seperate browser tab so you can fill in the answers as you proceed through the questions.&lt;/p>
