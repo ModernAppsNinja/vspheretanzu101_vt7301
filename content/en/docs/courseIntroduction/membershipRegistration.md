@@ -13,6 +13,7 @@ weight: 1013
     - [Step 3 - Add a line to your file](#step-3---add-a-line-to-your-file)
     - [Step 4 - Submit your registration document](#step-4---submit-your-registration-document)
 
+{{< youtube Ad4ObhsOaJk >}}
 
 ## Requirements for tests and course completion certificates
 

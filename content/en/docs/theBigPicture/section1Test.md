@@ -14,6 +14,8 @@ Ninja tests use devops tools and processes so the testing system itself provides
   - [Section 1 Test Questions](#section-1-test-questions)
       - [This concludes the section 1 test. Please use the navigation bar to proceed to the next page.](#this-concludes-the-section-1-test-please-use-the-navigation-bar-to-proceed-to-the-next-page)
 
+{{< youtube J_nV5YPypqs >}}
+
 ## Instructions
 
 This test uses automated grading, you must follow the instructions exactly to ensure automated grading will complete successfully. 
