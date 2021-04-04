@@ -2,7 +2,7 @@
 name: Submit Test Answer Key
 about: Course Maintainers Only - Submit Test Answer Key
 title: Submit Test Answer Key
-labels: 'submit_test_key'
+labels: 'submittestkey'
 assignees: 'modernappsninjabot'
 
 ---
