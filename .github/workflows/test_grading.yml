@@ -391,7 +391,7 @@ jobs:
           curl -X POST \
           -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          -d '{"event": "COMMENT", "body": "@${{ github.event.sender.login }} Your [grade report](https://github.com/modernappsninjas/${{ github.event.sender.login }}/blob/main/static/userdata/courses/${{ github.event.repository.name }}/grade_report.pr${{ github.event.number }}.${{ env.test_name }}.md) and [course record card](https://modernappsninjas.github.io/${{ github.event.sender.login }}/course/${{ env.lorepo }}/) have been updated in your member repository to reflect your testing records. Please note this PR will be closed and not merged to keep the answer sheet clear for other users. We recommend deleting the branch in your fork you used to submit this PR."}' \
+          -d '{"event": "COMMENT", "body": "@${{ github.event.sender.login }} Your [grade report](https://github.com/modernappsninjas/${{ github.event.sender.login }}/blob/main/static/userdata/courses/${{ github.event.repository.name }}/grade_report.pr${{ github.event.number }}.${{ github.event.repository.name }}.md) and [member course record card](https://github.com/modernappsninjas/${{ github.event.sender.login }}/tree/main/content/english/course/${{ github.event.repository.name }}.md) have been updated to reflect your testing records."}' \
           "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}/reviews" \
           -o /tmp/pr_comment_post_response.json
           cat /tmp/pr_comment_post_response.json
