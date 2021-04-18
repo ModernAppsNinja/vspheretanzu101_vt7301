@@ -1,5 +1,5 @@
 ---
-title: "Compare VSphere and VCF with Tanzu"
+title: "Compare vSphere and VCF with Tanzu"
 date: 2020-10-09T03:17:37-07:00
 weight: 2140
 ---
