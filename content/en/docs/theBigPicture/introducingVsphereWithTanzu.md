@@ -1,5 +1,5 @@
 ---
-title: "Introducing VSphere With Tanzu"
+title: "Introducing vSphere With Tanzu"
 date: 2020-10-09T03:11:21-07:00
 weight: 2105
 ---
