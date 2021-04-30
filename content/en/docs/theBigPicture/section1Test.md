@@ -18,7 +18,7 @@ Ninja tests use devops tools and processes so the testing system itself provides
 
 ## Instructions
 
-This test uses automated grading, you must follow the instructions exactly to ensure automated grading will complete successfully. 
+This test uses automated grading, you must follow the instructions exactly to ensure automated grading will complete successfully.  
 
 To complete the test you must review the questions on this page, and fill in your answers on a seperate answer sheet provided below. We recommend opening the answer sheet for the test in a seperate browser tab so you can fill in the answers as you proceed through the questions. 
 
