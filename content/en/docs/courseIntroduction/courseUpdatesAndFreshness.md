@@ -7,7 +7,7 @@ weight: 1025
 We make a strong effort to keep the content in this course as current as
 possible, however the Tanzu Portfolio is rapidly growing and there may
 be times where this course may not include the newest updates. Always
-please refer to the official [VMware Tanzu Portfiolio
+please refer to the official [VMware Tanzu Portfolio
 Website](https://tanzu.vmware.com/tanzu) and your VMware account team
 for the latest details on products covered in this course. 
 
