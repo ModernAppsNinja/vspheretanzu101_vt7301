@@ -73,8 +73,8 @@ community.&lt;/p>
 &lt;h4 id="step-4---submit-your-registration-document">Step 4 - Submit your registration document&lt;/h4>
 &lt;p>Scroll to the bottom of the registration document page and click &lt;code>Propose New File&lt;/code> as shown in the following image:&lt;/p>
 &lt;p>&lt;img src="https://github.com/ModernAppsNinja/course_repo_template_ct8279/blob/main/static/admin/assets/images/propose_changes.png" alt="Propose New File Screenshot">&lt;/p>
-&lt;p>After you click &lt;code>Propose New File&lt;/code>, your browser will be redirected to the &lt;code>Comparing Changes&lt;/code> page with all the configuration all setup so all you sould need to do is click &lt;code>Create Pull Request&lt;/code> &amp;mdash; but before you click, please review the other details shown on the comparing changes and observe that the file you created and the lines added are shown, so you can easily review and verify your proposed changes before submitting.&lt;/p>
-&lt;p>After you click &lt;code>Create pull request&lt;/code>, an automated GitHub Action worklow will initiate that will do the following actions:&lt;/p>
+&lt;p>After you click &lt;code>Propose New File&lt;/code>, your browser will be redirected to the &lt;code>Comparing Changes&lt;/code> page with all the configuration all setup so all you should need to do is click &lt;code>Create Pull Request&lt;/code> &amp;mdash; but before you click, please review the other details shown on the comparing changes and observe that the file you created and the lines added are shown, so you can easily review and verify your proposed changes before submitting.&lt;/p>
+&lt;p>After you click &lt;code>Create pull request&lt;/code>, an automated GitHub Action workflow will initiate that will do the following actions:&lt;/p>
 &lt;ul>
 &lt;li>verify that your github account is a member of the modernappsninja organization&lt;/li>
 &lt;li>verify the filename of the submitted document matches the github username of the logged-in user that submitted the pull request&lt;/li>
