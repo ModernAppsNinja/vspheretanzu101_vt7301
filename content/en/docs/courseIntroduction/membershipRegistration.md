@@ -71,9 +71,9 @@ Scroll to the bottom of the registration document page and click `Propose New Fi
 
 ![Propose New File Screenshot](https://github.com/ModernAppsNinja/course_repo_template_ct8279/blob/main/static/admin/assets/images/propose_changes.png)
 
-After you click `Propose New File`, your browser will be redirected to the `Comparing Changes` page with all the configuration all setup so all you sould need to do is click `Create Pull Request` --- but before you click, please review the other details shown on the comparing changes and observe that the file you created and the lines added are shown, so you can easily review and verify your proposed changes before submitting.
+After you click `Propose New File`, your browser will be redirected to the `Comparing Changes` page with all the configuration all setup so all you should need to do is click `Create Pull Request` --- but before you click, please review the other details shown on the comparing changes and observe that the file you created and the lines added are shown, so you can easily review and verify your proposed changes before submitting.
 
-After you click `Create pull request`, an automated GitHub Action worklow will initiate that will do the following actions:
+After you click `Create pull request`, an automated GitHub Action workflow will initiate that will do the following actions:
 - verify that your github account is a member of the modernappsninja organization
 - verify the filename of the submitted document matches the github username of the logged-in user that submitted the pull request
 - if the above items are successfully validated:
