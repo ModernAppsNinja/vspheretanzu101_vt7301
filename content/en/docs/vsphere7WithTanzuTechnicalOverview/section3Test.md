@@ -31,7 +31,7 @@ The Answer sheet will open in Github's web-based editor, similar to the image sh
 ![Example Test Response Sheet](/vspheretanzu101_vt7301/admin/assets/images/blank_test_screen_example.png)  
 
 After you fill in your answer sheet, you will submit  your responses as a git [pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/about-pull-requests) following the instructions provided below, which will trigger a workflow that will grade your responses and provide your test grading sheet. 
-
+PLEASE SEE GRADE REPORT 404 in "Proposed Changes"
 ### Full Test Instructions
 
 If this is the first test you have taken, or if you have an questions at all about how to propely complete the test answer sheet or the test grading service, please review the full [How to Take a Test Instructions](https://modernapps.ninja/course_repo_template_ct8279/docs/reference/testinstructions/).  
