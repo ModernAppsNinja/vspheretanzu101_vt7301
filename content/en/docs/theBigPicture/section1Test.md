@@ -15,7 +15,7 @@ Ninja tests use devops tools and processes so the testing system itself provides
       - [This concludes the section 1 test. Please use the navigation bar to proceed to the next page.](#this-concludes-the-section-1-test-please-use-the-navigation-bar-to-proceed-to-the-next-page)
 
 {{< youtube J_nV5YPypqs >}}
-
+THERE IS NO COMMENT IN THE VIDEO ON HOW TO RETAKE TESTS, OR IF THIS IS ALLOWED/RECOMMENDED.
 ## Instructions
 
 This test uses automated grading, you must follow the instructions exactly to ensure automated grading will complete successfully. 
@@ -35,6 +35,7 @@ After you fill in your answer sheet, you will submit  your responses as a git [p
 ### Full Test Instructions
 
 If this is the first test you have taken, or if you have an questions at all about how to propely complete the test answer sheet or the test grading service, please review the full [How to Take a Test Instructions](https://modernapps.ninja/course_repo_template_ct8279/docs/reference/testinstructions/).  
+THE ABOVE LINK IS BROKEN.
 
 It is important that you follow the instructions carefully to ensure the automated grading process completes successfully.
 
