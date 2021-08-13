@@ -5,7 +5,7 @@ weight: 6015
 ---
 
 If you have completed all tests in the course and recieved over 70% correct responses, you can make an automated request to recieve a certificate of completion for this course.  
-  
+  GITHUB WORKFLOW FAILED - See proposed changes below
 
 {{< youtube ywLPw0QdU08 >}}
   
