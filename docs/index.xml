@@ -485,18 +485,18 @@ Kenny Coleman&lt;/li>
 &lt;p>Tests may contain two types of questions, multiple choice single answer, and multiple choice multiple answer, as shown in the examples below.&lt;/p>
 &lt;h4 id="example-multiple-choice-single-answer-question">Example Multiple Choice Single Answer Question&lt;/h4>
 &lt;h5 id="question1-what-value-will-the-bash-shell-return-when-you-enter-the-command-echo-hello">Question1: What value will the bash shell return when you enter the command &lt;code>echo hello&lt;/code>?&lt;/h5>
-&lt;pre>&lt;code>Answers:
+&lt;pre tabindex="0">&lt;code>Answers:
 a: banana
 b: hello
 c: apple
 d: shutdown commencing
 &lt;/code>&lt;/pre>&lt;p>The correct answer to Question1 is &lt;code>b&lt;/code> as the command will return the value hello.&lt;/p>
 &lt;p>On your answer sheet, you would fill in the value &lt;code>b&lt;/code> for Question1, as shown in the following example:&lt;/p>
-&lt;pre>&lt;code>Question1: b
+&lt;pre tabindex="0">&lt;code>Question1: b
 Question2:
 Question3:
 &lt;/code>&lt;/pre>&lt;h4 id="example-multiple-choice-multiple-answer-question">Example Multiple Choice Multiple Answer Question&lt;/h4>
-&lt;pre>&lt;code>Question2: Which of the following are fruits? (Select 3)
+&lt;pre tabindex="0">&lt;code>Question2: Which of the following are fruits? (Select 3)
 Answers:
 a: banana
 b: hello
@@ -507,7 +507,7 @@ e: orange
 &lt;p>Partially correct answers will be counted as incorrect, no partial credit is given.&lt;/p>
 &lt;p>You do not need to put spaces between each value in your response, but the grading service will ignore spaces if present.&lt;/p>
 &lt;p>On your answer sheet, you would fill in the value &lt;code>a,c,e&lt;/code> for Question2, as shown in the following example:&lt;/p>
-&lt;pre>&lt;code>Question1: b
+&lt;pre tabindex="0">&lt;code>Question1: b
 Question2: a,c,e
 Question3:
 &lt;/code>&lt;/pre>&lt;h3 id="submitting-your-test-response">Submitting your test response&lt;/h3>
