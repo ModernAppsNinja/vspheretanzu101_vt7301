@@ -318,11 +318,12 @@ jobs:
           "https://raw.githubusercontent.com/ModernAppsNinja/admin-private/main/userdata/members/${{ github.event.sender.login }}_${{ github.event.sender.id }}.yml" \
           -o /tmp/member_record.yml
           cat /tmp/member_record.yml
+      # COURSE DEVELOPERS: This section awards digital badges. Do not uncomment this section until you have created the digital badge for this course and have the badge ID values available
       - name: make assertion to award digital badge to recipient
         if: env.passing_grade == 'true'
         run: |
           preferredemailaddress=$(yq e '.preferredEmailAddress' /tmp/member_record.yml)
-          badgeclass_entity_id=L2Y05DpQTjWmZWt5xd9eGA
+          badgeclass_entity_id=U2jUzma3Tq-OKHrpt6whUw
           reponame=${{ github.event.repository.name }}
           lorepo=$(echo ${reponame,,})
           echo "lorepo is: ${lorepo}"
@@ -436,6 +437,14 @@ jobs:
           -o /tmp/course_meta.yml
           sed -i '/^draft:/c\draft: false' /tmp/course_meta.yml
           sed -i '/^type:/c\type: cert' /tmp/course_meta.yml
+      - name: set envars from course meta
+        if: env.passing_grade == 'true'
+        run: |
+          cat /tmp/course_meta.yml
+          course_navbar_title=$(yq e '.course_navbar_title' /tmp/course_meta.yml)
+          echo "The course navbar title is: ${course_navbar_title}"
+          course_apply_url=$(yq e '.apply_url' /tmp/course_meta.yml | head -1)
+          echo "The course apply url is: ${course_apply_url}"
       - name: prepare updated member course card
         if: env.passing_grade == 'true'
         run: |
@@ -574,3 +583,23 @@ jobs:
           "https://api.github.com/repos/${{ env.org_repo }}/pulls/${{ github.event.number }}" \
           -o /tmp/pr_close_response.json
           cat /tmp/pr_close_response.json
+      - name: install tweet.sh and send tweet
+        if: env.passing_grade == 'true'
+        env: 
+          MY_SCREEN_NAME: modernappsninja
+          MY_LANGUAGE: EN
+          CONSUMER_KEY: ${{ secrets.TWITTER_MODERNAPPSBYTANZU_API_KEY }}
+          CONSUMER_SECRET: ${{ secrets.TWITTER_MODERNAPPSBYTANZU_API_SECRET_KEY  }}
+          ACCESS_TOKEN: ${{ secrets.TWITTER_MODERNAPPSBYTANZU_ACCESS_TOKEN }}
+          ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_MODERNAPPSBYTANZU_ACCESS_TOKEN_SECRET }}        
+        run: |
+          # Install dependencies for tweet.sh
+          sudo apt-get -y install nkf
+          # Install tweet.sh
+          curl -H "Authorization: token ${{ secrets.NINJABOTGURU }}" \
+          "https://raw.githubusercontent.com/piroor/tweet.sh/trunk/tweet.sh" \
+          -o tweet.sh
+          cat tweet.sh
+          chmod +x tweet.sh
+          # send tweet
+          ./tweet.sh post "Congratulations to https://github.com/${{ github.event.sender.login }} for completing the ${{ env.course_navbar_title }} course and earning their digital badge from #ModernAppsLearning by @VMwareTanzu https://modernapps.ninja $(cat /tmp/badge_openBadgeId)"
