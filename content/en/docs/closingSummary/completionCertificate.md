@@ -4,6 +4,10 @@ date: 2020-10-09T03:15:26-07:00
 weight: 6015
 ---
 
+## Important Notice: 
+
+**The Enrollment, testing and digital badge features will be removed on Friday February 18th, 2022. Please ensure you have completed any test and digital badge requests prior to this date. The course materials will still be available.**
+
 If you have completed all tests in the course and recieved over 70% correct responses, you can make an automated request to recieve a certificate of completion for this course.  
   
 
