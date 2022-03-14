@@ -17,3 +17,5 @@ course can be updated at any time, and new content and requirements may
 be added while you are taking your course. We will make effort to notify
 students in advance of any significant updates are made to minimize any
 changes to course completion requirements. 
+
+**You have reached the last page in this section. Please use the left navigation bar and click on the next section.**
